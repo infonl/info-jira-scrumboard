@@ -41,8 +41,8 @@ To get the lastest version:
 1. Go to your JIRA
 2. Click 'User JavaScript and CSS' icon 
 3. Open the two panes (js/css) in the plugin
-4. Open https://github.com/infonl/jira-scrumboard/blob/master/css.css Press RAW and copy-paste content in CSS pane
-5. Open https://github.com/infonl/jira-scrumboard/blob/master/js.js Press RAW and copy-paste content in JS pane
+4. Open https://github.com/infonl/jira-scrumboard/blob/master/css.css Press RAW and copy-paste content in CSS pane. This will replace the old css.
+5. Open https://github.com/infonl/jira-scrumboard/blob/master/js.js Press RAW and copy-paste content in JS pane. This will replace the old js.
 6. Save
 Go to your JIRA and refresh page and have fun!
 
