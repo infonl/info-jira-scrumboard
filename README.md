@@ -44,7 +44,10 @@ To get the lastest version:
 4. Open https://github.com/infonl/jira-scrumboard/blob/master/css.css Press RAW and copy-paste content in CSS pane. This will replace the old css.
 5. Open https://github.com/infonl/jira-scrumboard/blob/master/js.js Press RAW and copy-paste content in JS pane. This will replace the old js.
 6. Save
+
 Go to your JIRA and refresh page and have fun!
+
+Happy paperless standups!
 
 
 
