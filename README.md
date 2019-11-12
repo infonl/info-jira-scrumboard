@@ -8,8 +8,10 @@ Active Sprints board
 - Adapt the Active Sprints-board so more issues fit on. 
 - Creates 2-1-1-2 columns instead of 1-1-1-1 and reduces the height of a card
 - Show even more condensed version of Active Sprints board with in High Contract-view (press Z multiple times). Optimal for larger screens for Daily Scrums/Daily standups.
--- Creates 3-1-1-3 columns 
--- hides Details-pane (press Z to show/hide it)
+
+High Contract-view
+- Creates 3-1-1-3 columns 
+- hides Details-pane (press Z to show/hide it)
 
 
 Backlog
