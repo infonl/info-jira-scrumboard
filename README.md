@@ -1,5 +1,7 @@
 # jira-scrumboard
-Tweaking the JIRA scrumboard
+Tweaking the JIRA scrumboard.
+
+We used a Chrome extension (User JavaScript and CSS) which allows you to inject your own JavaScript and CSS rules to any page, like your JIRA page. So this tweak does not require any change in JIRA, since its not a JIRA plugin.
 
 Active Sprints board
 ===========================
