@@ -34,12 +34,12 @@ https://chrome.google.com/webstore/detail/user-javascript-and-css/nbhcbdghjpllgm
 Refresh page with JIRA opened.. and have fun!
 
 To get the lastest version:
-9. Go to your JIRA
-10. Click 'User JavaScript and CSS' icon 
-11. Open the two panes (js/css) in the plugin
-12. Open https://github.com/infonl/jira-scrumboard/blob/master/css.css Press RAW and copy-paste content in CSS pane
-13. Ppen https://github.com/infonl/jira-scrumboard/blob/master/js.js Press RAW and copy-paste content in JS pane
-14. Save
+1. Go to your JIRA
+2. Click 'User JavaScript and CSS' icon 
+3. Open the two panes (js/css) in the plugin
+4. Open https://github.com/infonl/jira-scrumboard/blob/master/css.css Press RAW and copy-paste content in CSS pane
+5. Open https://github.com/infonl/jira-scrumboard/blob/master/js.js Press RAW and copy-paste content in JS pane
+6. Save
 Go to your JIRA and refresh page and have fun!
 
 ps css.css and js.js are updated more frequently than the settings-file since that is easier to update for us.
