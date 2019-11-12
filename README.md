@@ -16,21 +16,24 @@ Backlog
 
 Install / update
 =====================
-1. install User Javasript and CSS plugin for Chrome
+0. Download user-js-css-v8-xxxxxx.json file from this repo
+1. install 'User JavaScript and CSS' extension for Chrome
 https://chrome.google.com/webstore/detail/user-javascript-and-css/nbhcbdghjpllgmfilhnhkllmkecfmpld?hl=en
-2. Click User Javasript and CSS icon 
+2. Click 'User JavaScript and CSS' icon 
 3. Go to Settings -> Settings
 4. Choose 'Upload and Apply' under Backup if you did not use this plugin before
-5. Select user-js-css-v8-xxxxxx.json from this repo -> this should upload some setting and some css/ja for your JIRA
+5. Select user-js-css-v8-xxxxxx.json file that you downloaded -> this should upload some settings and some css/js for your JIRA
 6. Edit the url under the Sites-tab -> should become your JIRA url
 
 Refresh page with JIRA opened.. and have fun!
 
 To get the lastest version:
 7. Go to your JIRA
-8. Click User Javasript and CSS icon 
-9. Copy paste content of css.css and js.js into the two panes in the plugin
+8. Click 'User JavaScript and CSS' icon 
+9. Copy-paste content of css.css and js.js into the two panes in the plugin
 10. Save
 11. Go to your JIRA and refresh page
+
+ps css.css and js.js are updated more frequently than the settings-file since that is easier to update.
 
 
