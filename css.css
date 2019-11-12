@@ -1,0 +1,204 @@
+/* 
+Adapt the Active Sprints-board so more issues fit on
+
+Creates 2-1-1-2 columns instead of 1-1-1-1 and reduces the height of a card
+
+Show even more condensed version of Active Sprints board with in High Contract-view (press Z multiple times)
+
+@author Oebe
+*/
+
+/* less height for card */ 
+.ghx-issue .ghx-issue-content {
+    min-height:  44px;
+}
+.ghx-issue-fields .ghx-summary .ghx-inner {
+    line-height: 1.6em;
+}
+
+/* 2-1-1-2 columns  */
+.ghx-rapid-views #gh #ghx-work #ghx-pool-column .ghx-columns, .ghx-rapid-views #gh #ghx-work #ghx-pool-column #ghx-column-headers, .ghx-rapid-views #gh #ghx-work #ghx-pool-column .ghx-zone-overlay-table {
+    grid-template-columns: 33% 16% 16% 33%;
+}
+
+.ghx-column:nth-child(1) .ghx-issue-subtask, 
+.ghx-column:nth-child(4) .ghx-issue-subtask {
+	width: 39%;
+	float: left;
+}
+
+/* compact view (Z-key)  */
+.ghx-header-compact .ghx-column:nth-child(1) .ghx-issue-subtask, 
+.ghx-header-compact .ghx-column:nth-child(4) .ghx-issue-subtask {
+	width: 42%;
+}
+
+.ghx-issue {
+    padding: 7px;
+}
+
+
+.ghx-issue-subtask {
+	margin: 3px;
+}
+
+.ghx-issue-fields .ghx-key,
+.ghx-type,
+.ghx-flags,
+.ghx-end
+{
+    display:none;
+}
+.ghx-mode-planning .ghx-key,
+.ghx-mode-planning .ghx-type,
+.ghx-mode-planning .ghx-flags,
+.ghx-mode-planning .ghx-end
+{
+    display:block;
+}
+
+.ghx-mode-planning .ghx-end {
+	display:flex;
+}
+
+.ghx-issue .ghx-avatar {
+    right: 5px;
+    top: 5px;
+}
+
+.ghx-issue.ghx-has-avatar .ghx-issue-fields, .ghx-issue.ghx-has-corner .ghx-issue-fields {
+    padding-right: 0;
+}
+
+.ghx-issue-fields .ghx-summary {
+ padding-right: 40px;
+}
+
+
+/* === high contraxt view === */
+
+/* Block sidebar from opening when in high contraxt view */
+.ghx-contrast-high #ghx-detail-view,
+.ghx-contrast-high #ghx-operations {
+	display:none;
+}
+
+.ghx-contrast-high .ghx-swimlane-header .ghx-heading {
+	margin: 2px 0;
+}
+.ghx-contrast-high #gh #ghx-work #ghx-pool-column .ghx-swimlane .ghx-swimlane-header {
+    top: 0;
+}
+
+.ghx-contrast-high .ghx-issue .ghx-issue-content {
+    min-height:  22px;
+}
+
+.ghx-contrast-high .ghx-column-title {
+	font-size: 15px;
+}
+.ghx-contrast-high .ghx-column-headers .ghx-colum {
+	padding: 0;
+}
+.ghx-contrast-high #gh #ghx-work #ghx-pool-column #ghx-column-headers .ghx-column {
+    padding: 0;
+}
+
+.ghx-contrast-high .ghx-issue-subtask{
+	padding: 2px 5px;
+}
+
+.ghx-contrast-high .ghx-column:nth-child(4)  .ghx-issue-content
+{
+    min-height:  22px;
+}
+.ghx-contrast-high .ghx-column:nth-child(4)  .ghx-issue-fields .ghx-summary .ghx-inner {
+    line-height: 1.0em;
+}
+
+.ghx-issue .ghx-avatar {
+    right: 1px;
+    top: 1px;
+}
+
+.ghx-contrast-high .ghx-column:nth-child(4)  .ghx-issue .ghx-avatar {
+    /*xdisplay:none;*/
+}
+
+.ghx-contrast-high .ghx-flagged {
+	background-color: #ffe9a8;
+}
+
+.ghx-contrast-high .ghx-column:nth-child(1) .ghx-issue-subtask,
+.ghx-contrast-high .ghx-column:nth-child(4) .ghx-issue-subtask{
+	width: 28%;
+	font-size: 11px;
+}
+
+
+/* hide some if more that 8 subtasks in Done*/
+
+.ghx-contrast-high .ghx-column:nth-child(4) .ghx-issue-subtask:nth-child(9),
+.ghx-contrast-high .ghx-column:nth-child(4) .ghx-issue-subtask:nth-child(10),
+.ghx-contrast-high .ghx-column:nth-child(4) .ghx-issue-subtask:nth-child(11),
+.ghx-contrast-high .ghx-column:nth-child(4) .ghx-issue-subtask:nth-child(12),
+.ghx-contrast-high .ghx-column:nth-child(4) .ghx-issue-subtask:nth-child(13)
+{
+    display:none;
+}
+
+
+/* get story title as a 1st column
+.ghx-contrast-high .ghx-swimlane-header {
+ width: 300px;
+}
+.ghx-contrast-high .ghx-columns {
+ width: 300px;
+}
+*/
+
+/* 2-1-1-2 columns  ghx-zone-overlay-table -> you see when dragging a task */
+
+.ghx-zone-overlay-table div:nth-child(1), .ghx-zone-overlay-table div:nth-child(4){
+   width: 64%;
+}
+.ghx-zone-overlay-table div:nth-child(2), .ghx-zone-overlay-table div:nth-child(3) {
+   width: 32%;
+}
+
+/*
+
+===== DEPRECATED ===========
+
+
+.ghx-column:nth-child(1), .ghx-column:nth-child(4) {
+   width: 500px;
+}
+.ghx-column:nth-child(2), .ghx-column:nth-child(3) {
+   width: 16%;
+}8/
+
+.ghx-column:nth-child(2) .ghx-issue-subtask, 
+.ghx-column:nth-child(3) .ghx-issue-subtask {
+	width: 90%;
+	float: left;
+}
+
+ .ghx-issue.ghx-has-corner .ghx-issue-fields {
+    padding-right: 5px;
+}
+
+.ghx-issue-fields .ghx-summary .ghx-inner {
+ max-height: 4.4em;
+}
+
+.ghx-issue .ghx-issue-content {
+	padding: 5px;
+}
+
+
+.ghx-issue {
+	font-size: 12px;
+}
+*/	
+
