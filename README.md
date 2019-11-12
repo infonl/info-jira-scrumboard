@@ -19,7 +19,7 @@ Backlog
 - Create a copy-pastable list of issuetitle + links. Easy for in Slack and Powerpoint (Sprint Review presentation)
 - Click on Backlog-header to open a new tab with the name + link of each issues
 
-Install / update
+Install
 =====================
 1. Download Zip from this repo (green button)
 2. Unzip zipfile and extract user-js-css-v8-xxxxxx.json file 
@@ -33,6 +33,10 @@ https://chrome.google.com/webstore/detail/user-javascript-and-css/nbhcbdghjpllgm
 
 Refresh page with JIRA opened.. and have fun!
 
+ps css.css and js.js are updated more frequently than the settings-file since that is easier to update for us. So we recommend updating your freshly installed version with the procedure below.
+
+Update
+=====================
 To get the lastest version:
 1. Go to your JIRA
 2. Click 'User JavaScript and CSS' icon 
@@ -42,6 +46,6 @@ To get the lastest version:
 6. Save
 Go to your JIRA and refresh page and have fun!
 
-ps css.css and js.js are updated more frequently than the settings-file since that is easier to update for us.
+
 
 
