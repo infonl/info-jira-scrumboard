@@ -1,17 +1,18 @@
 # jira-scrumboard
 Tweaking the JIRA scrumboard.
 
-We used a Chrome extension (User JavaScript and CSS) which allows you to inject your own JavaScript and CSS rules to any page, like your JIRA page. So this tweak does not require any change in JIRA, since its not a JIRA plugin.
+Requires a Chrome extension (User JavaScript and CSS) which allows you to inject your own JavaScript and CSS rules to any page, like your JIRA page. So this tweak does not require any change in JIRA, since it's not a JIRA plugin.
 
 Active Sprints board
 ===========================
 - Adapt the Active Sprints-board so more issues fit on. 
 - Creates 2-1-1-2 columns instead of 1-1-1-1 and reduces the height of a card
-- Show even more condensed version of Active Sprints board with in High Contract-view (press Z multiple times). Optimal for larger screens for Daily Scrums/Daily standups.
 
-High Contract-view
+Condensed High Contract-view (press Z multiple times). 
+Optimal for larger screens for Daily Scrums/Daily standups.
 - Creates 3-1-1-3 columns 
-- hides Details-pane (press Z to show/hide it)
+- Hides IDs, labels and priorities of subtasks: more space for titles + assignees
+- Hides Details-pane to create a steady, non-moving screen while dragging (press Z to show/hide Details pana, use A to assign people)
 
 
 Backlog
