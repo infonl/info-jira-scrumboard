@@ -17,8 +17,10 @@ Optimal for larger screens for Daily Scrums/Daily standups.
 
 Backlog
 =====================
-- Create a copy-pastable list of issuetitle + links. Easy for in Slack and Powerpoint (Sprint Review presentation)
+- Create a copy-pastable list of issuetitles + links. Easy for in Slack/Mail (share list of stories that need refinement) and Powerpoint/Keynote (List stories in the Sprint Review presentation)
+- Experimental: HTML blocks for adding a test-results table to Confluence/wiki
 - Click on Backlog-header to open a new tab with the name + link of each issues
+(if this link doesn't show up: refresh the page)
 
 Install
 =====================
