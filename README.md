@@ -12,7 +12,17 @@ Condensed High Contract-view (press Z multiple times).
 Optimal for larger screens for Daily Scrums/Daily standups.
 - Creates 3-1-1-3 columns 
 - Hides IDs, labels and priorities of subtasks: more space for titles + assignees
-- Hides Details-pane to create a steady, non-moving screen while dragging (press Z to show/hide Details pana, use A to assign people)
+- Hides Details-pane to create a steady, non-moving screen while dragging 
+
+Tips
+- press Z to enable Fullscreen -> High contract (=condensed) -> Normal view -> Fullscren etc
+- click on a card -> press A to assign people (type part of name and hit Enter twice)
+- click on a card -> press . (dot) to choose any action (like Delete)
+- Manually collapse rows of stories that are set to Done the day before
+
+Tips for exceptional cases
+- For more zooming on even bigger screens: use Ctrl (or CMD) + or - (browser zoom)
+- When in Condensed view: press Z to switch view and show/hide Details pane
 
 
 Backlog
