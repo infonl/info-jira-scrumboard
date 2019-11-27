@@ -49,6 +49,13 @@ Show even more condensed version of Active Sprints board with in High Contract-v
 {
     display:none;
 }
+
+.ghx-column:nth-child(1) .ghx-days,
+.ghx-column:nth-child(4) .ghx-days
+{
+    display:none;
+}
+
 .ghx-mode-planning .ghx-key,
 .ghx-mode-planning .ghx-type,
 .ghx-mode-planning .ghx-flags,
@@ -146,6 +153,8 @@ Show even more condensed version of Active Sprints board with in High Contract-v
 {
     display:none;
 }
+
+
 
 
 /* get story title as a 1st column
