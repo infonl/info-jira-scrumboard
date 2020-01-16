@@ -144,36 +144,7 @@ Show even more condensed version of Active Sprints board with in High Contract-v
 
 
 /* hide some if more that 6 subtasks in Done */
-.ghx-contrast-high .ghx-column:nth-child(4) .ghx-issue-subtask:nth-child(6),
-.ghx-contrast-high .ghx-column:nth-child(4) .ghx-issue-subtask:nth-child(7),
-.ghx-contrast-high .ghx-column:nth-child(4) .ghx-issue-subtask:nth-child(8),
-.ghx-contrast-high .ghx-column:nth-child(4) .ghx-issue-subtask:nth-child(9),
-.ghx-contrast-high .ghx-column:nth-child(4) .ghx-issue-subtask:nth-child(10),
-.ghx-contrast-high .ghx-column:nth-child(4) .ghx-issue-subtask:nth-child(11),
-.ghx-contrast-high .ghx-column:nth-child(4) .ghx-issue-subtask:nth-child(12),
-.ghx-contrast-high .ghx-column:nth-child(4) .ghx-issue-subtask:nth-child(13),
-.ghx-contrast-high .ghx-column:nth-child(4) .ghx-issue-subtask:nth-child(14),
-.ghx-contrast-high .ghx-column:nth-child(4) .ghx-issue-subtask:nth-child(15),
-.ghx-contrast-high .ghx-column:nth-child(4) .ghx-issue-subtask:nth-child(16),
-.ghx-contrast-high .ghx-column:nth-child(4) .ghx-issue-subtask:nth-child(17),
-.ghx-contrast-high .ghx-column:nth-child(4) .ghx-issue-subtask:nth-child(18),
-.ghx-contrast-high .ghx-column:nth-child(4) .ghx-issue-subtask:nth-child(19),
-.ghx-contrast-high .ghx-column:nth-child(4) .ghx-issue-subtask:nth-child(20),
-.ghx-contrast-high .ghx-column:nth-child(4) .ghx-issue-subtask:nth-child(21),
-.ghx-contrast-high .ghx-column:nth-child(4) .ghx-issue-subtask:nth-child(22),
-.ghx-contrast-high .ghx-column:nth-child(4) .ghx-issue-subtask:nth-child(23),
-.ghx-contrast-high .ghx-column:nth-child(4) .ghx-issue-subtask:nth-child(24),
-.ghx-contrast-high .ghx-column:nth-child(4) .ghx-issue-subtask:nth-child(25),
-.ghx-contrast-high .ghx-column:nth-child(4) .ghx-issue-subtask:nth-child(26),
-.ghx-contrast-high .ghx-column:nth-child(4) .ghx-issue-subtask:nth-child(27),
-.ghx-contrast-high .ghx-column:nth-child(4) .ghx-issue-subtask:nth-child(28),
-.ghx-contrast-high .ghx-column:nth-child(4) .ghx-issue-subtask:nth-child(29),
-.ghx-contrast-high .ghx-column:nth-child(4) .ghx-issue-subtask:nth-child(30),
-.ghx-contrast-high .ghx-column:nth-child(4) .ghx-issue-subtask:nth-child(31),
-.ghx-contrast-high .ghx-column:nth-child(4) .ghx-issue-subtask:nth-child(32),
-.ghx-contrast-high .ghx-column:nth-child(4) .ghx-issue-subtask:nth-child(33),
-.ghx-contrast-high .ghx-column:nth-child(4) .ghx-issue-subtask:nth-child(34),
-.ghx-contrast-high .ghx-column:nth-child(4) .ghx-issue-subtask:nth-child(35)
+.ghx-contrast-high .ghx-column:nth-child(4) .ghx-issue-subtask:nth-child(n+6)
 {
     display:none;
 }
