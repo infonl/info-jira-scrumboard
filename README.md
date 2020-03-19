@@ -6,7 +6,7 @@ Requires a Chrome extension (User JavaScript and CSS) which allows you to inject
 Active Sprints board
 ===========================
 - Adapt the Active Sprints-board so more issues fit on. 
-- Creates 2-1-1-2 columns instead of 1-1-1-1 and reduces the height of a card
+- Creates 2-1-1-2 columns instead of 1-1-1-1 and reduces the height of a card. Although the code is now aiming for a 4 column scrumboard, there is a 5 column option in comment so easy to implement.
 
 Condensed High Contract-view (press Z multiple times). 
 Optimal for larger screens for Daily Scrums/Daily standups.
@@ -47,7 +47,7 @@ https://chrome.google.com/webstore/detail/user-javascript-and-css/nbhcbdghjpllgm
 
 Open your Active sprints-board in JIRA and hit refresh (F5).. and have fun!
 
-ps css.css and js.js are updated more frequently than the settings-file since that is easier to update for us. So we recommend updating your freshly installed version with the procedure below.
+NOTE: css.css and js.js are updated more frequently than the settings-file since that is easier to update for us. So we recommend updating your freshly installed version with the procedure below.
 
 Update
 =====================
