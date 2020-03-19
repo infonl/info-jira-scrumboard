@@ -152,24 +152,13 @@ Show even more condensed version of Active Sprints board with in High Contract-v
 }
 
 
-
-
-/* get story title as a 1st column
-.ghx-contrast-high .ghx-swimlane-header {
- width: 300px;
-}
-.ghx-contrast-high .ghx-columns {
- width: 300px;
-}
-*/
-
 /* 2-1-1-2 columns  ghx-zone-overlay-table -> you see when dragging a task */
-
-.ghx-zone-overlay-table div:nth-child(1), .ghx-zone-overlay-table div:nth-child(4){
-   width: 64%;
-}
-.ghx-zone-overlay-table div:nth-child(2), .ghx-zone-overlay-table div:nth-child(3) {
+.ghx-zone-overlay-table div {
    width: 32%;
+}
+
+.ghx-zone-overlay-table div:nth-child(1), .ghx-zone-overlay-table div:nth-last-child(1){
+   width: 64%;
 }
 
 
