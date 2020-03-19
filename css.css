@@ -8,6 +8,15 @@ Show even more condensed version of Active Sprints board with in High Contract-v
 @author Oebe
 */
 
+.ghx-column:nth-child(1) .ghx-column-title:after {
+	content: ' --- Brooklyn: Ge Is Ja Ma Ni Ri Ro St PO';
+}
+.ghx-column:nth-last-child(1) .ghx-column-title:after {
+	content: ' --- Queens: Ad Bo Go Ma Vl Ri PO';
+}
+
+
+
 /* less height for card */ 
 .ghx-issue .ghx-issue-content {
     min-height:  44px;
@@ -16,20 +25,21 @@ Show even more condensed version of Active Sprints board with in High Contract-v
     line-height: 1.6em;
 }
 
-/* 2-1-1-2 columns  */
+/* 4 column: 2-1-1-2 columns  */
 .ghx-rapid-views #gh #ghx-work #ghx-pool-column .ghx-columns, .ghx-rapid-views #gh #ghx-work #ghx-pool-column #ghx-column-headers, .ghx-rapid-views #gh #ghx-work #ghx-pool-column .ghx-zone-overlay-table {
     grid-template-columns: 33% 16% 16% 33%;
+    /* 5 coloumn grid-template-columns: 18% 21% 21% 20% 18%; */
 }
 
 .ghx-column:nth-child(1) .ghx-issue-subtask, 
-.ghx-column:nth-child(4) .ghx-issue-subtask {
+.ghx-column:nth-last-child(1) .ghx-issue-subtask {
 	width: 39%;
 	float: left;
 }
 
 /* compact view (Z-key)  */
 .ghx-header-compact .ghx-column:nth-child(1) .ghx-issue-subtask, 
-.ghx-header-compact .ghx-column:nth-child(4) .ghx-issue-subtask {
+.ghx-header-compact .ghx-column:nth-last-child(1) .ghx-issue-subtask {
 	width: 42%;
 }
 
@@ -51,7 +61,7 @@ Show even more condensed version of Active Sprints board with in High Contract-v
 }
 
 .ghx-column:nth-child(1) .ghx-days,
-.ghx-column:nth-child(4) .ghx-days
+.ghx-column:nth-last-child(1) .ghx-days
 {
     display:none;
 }
@@ -115,11 +125,11 @@ Show even more condensed version of Active Sprints board with in High Contract-v
 	padding: 2px 5px;
 }
 
-.ghx-contrast-high .ghx-column:nth-child(4)  .ghx-issue-content
+.ghx-contrast-high .ghx-column:nth-last-child(1)  .ghx-issue-content
 {
     min-height:  22px;
 }
-.ghx-contrast-high .ghx-column:nth-child(4)  .ghx-issue-fields .ghx-summary .ghx-inner {
+.ghx-contrast-high .ghx-column:nth-last-child(1)  .ghx-issue-fields .ghx-summary .ghx-inner {
     line-height: 1.0em;
 }
 
@@ -128,7 +138,7 @@ Show even more condensed version of Active Sprints board with in High Contract-v
     top: 1px;
 }
 
-.ghx-contrast-high .ghx-column:nth-child(4)  .ghx-issue .ghx-avatar {
+.ghx-contrast-high .ghx-column:nth-last-child(1)  .ghx-issue .ghx-avatar {
     /*xdisplay:none;*/
 }
 
@@ -137,14 +147,15 @@ Show even more condensed version of Active Sprints board with in High Contract-v
 }
 
 .ghx-contrast-high .ghx-column:nth-child(1) .ghx-issue-subtask,
-.ghx-contrast-high .ghx-column:nth-child(4) .ghx-issue-subtask{
+.ghx-contrast-high .ghx-column:nth-last-child(1) .ghx-issue-subtask{
 	width: 28%;
 	font-size: 11px;
 }
 
 
-/* hide some if more that 6 subtasks in Done */
-.ghx-contrast-high .ghx-column:nth-child(4) .ghx-issue-subtask:nth-child(n+6)
+/* hide some if more that 8 subtasks in Done*/
+
+.ghx-contrast-high .ghx-column:nth-last-child(1) .ghx-issue-subtask:nth-child(n+6)
 {
     display:none;
 }
@@ -170,39 +181,4 @@ Show even more condensed version of Active Sprints board with in High Contract-v
    width: 32%;
 }
 
-/*
-
-===== DEPRECATED ===========
-
-
-.ghx-column:nth-child(1), .ghx-column:nth-child(4) {
-   width: 500px;
-}
-.ghx-column:nth-child(2), .ghx-column:nth-child(3) {
-   width: 16%;
-}8/
-
-.ghx-column:nth-child(2) .ghx-issue-subtask, 
-.ghx-column:nth-child(3) .ghx-issue-subtask {
-	width: 90%;
-	float: left;
-}
-
- .ghx-issue.ghx-has-corner .ghx-issue-fields {
-    padding-right: 5px;
-}
-
-.ghx-issue-fields .ghx-summary .ghx-inner {
- max-height: 4.4em;
-}
-
-.ghx-issue .ghx-issue-content {
-	padding: 5px;
-}
-
-
-.ghx-issue {
-	font-size: 12px;
-}
-*/	
 
