@@ -41,8 +41,8 @@ https://chrome.google.com/webstore/detail/user-javascript-and-css/nbhcbdghjpllgm
 4. Click 'User JavaScript and CSS' icon in Chrome (Blue/red dotted lines-icon)
 5. Go to Settings -> Settings
 6. Choose 'Upload and Apply' under Backup if you did not use this plugin before
-7. Select user-js-css-v8-xxxxxx.json file that you downloaded -> this should upload some settings and some css/js for your JIRA
-8. Edit the url under the Sites-tab -> should become your JIRA url, like jira.yourdomain.com/jira/secure/RapidBoard.jspa
+7. Select `user-js-css-v8-xxxxxx.json` file that you downloaded -> this should upload some settings and some css/js for your JIRA
+8. If your JIRA url if different that this format: `jira.*/RapidBoard.jspa` (where * is a wildcard for any character): Edit the url under the Sites-tab -> should become your JIRA url, like `jira.yourdomain.com/jira/secure/RapidBoard.jspa`
 9. Hit Save
 
 Open your Active sprints-board in JIRA and hit refresh (F5).. and have fun!
