@@ -63,6 +63,19 @@ Go to your JIRA and refresh page and have fun!
 
 Happy paperless standups!
 
-
+FAQ
+===========================
+*I don't see the nicer scrumboard. What is wrong?*
+I asume you use Chrome and the extension and script installed via the procdure above. 
+- Go to your JIRA.
+- Click on the blue-red 'User JavaScript and CSS' extension icon in Chrome.
+- Do you see a url under 'Rules for this page'?
+- if not, click on the Settings-wheel icon of this extension
+-- Do you see a url under Sites-tab?
+--- if not: redo the install procedure above
+--- if yes: you got in installed right, but the url is not correct 
+--- click on the url in the list 
+--- change the url to your JIRA url
+- If you see a url under 'Rules for this page': make sure the toggle in front of it is green and make sure you refresh your JIRA-page.
 
 
