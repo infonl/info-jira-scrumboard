@@ -16,9 +16,9 @@ Optimal for larger screens for Daily Scrums/Daily standups.
 
 Tips
 - press Z to enable Fullscreen -> High contract (=condensed) -> Normal view -> Fullscren etc
-- click on a card -> press A to assign people (type part of name and hit Enter twice)
-- click on a card -> press . (dot) to choose any action (like Delete)
-- Manually collapse rows of stories that are set to Done the day before
+- click on a card -> press A to assign people (type a part of then name and hit Enter twice)
+- click on a card -> press . (dot) to choose any action (like Delete, Creating subtasks)
+- Manually collapse rows of stories that are set to Done the day before to save space
 
 Tips for exceptional cases
 - For more zooming on even bigger screens: use Ctrl (or CMD) + or - (browser zoom)
