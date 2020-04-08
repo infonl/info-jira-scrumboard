@@ -60,6 +60,7 @@ function appendLink() {
 				var colHeader2 = 'Scenario/ steps to execute';
 				var colHeader3 = 'Expected result';
 				var colHeader4 = 'Actual result';
+				var colHeader5 = 'Remarks';
 			
 				copyTextTestScenarioTable += '<tr>\
       <td class="highlight-blue" colspan="5" data-highlight-colour="blue">\
@@ -84,7 +85,7 @@ function appendLink() {
               <ac:parameter ac:name="title">Not completed</ac:parameter>\
             </ac:structured-macro>\
       </th>\
-      <th colspan="1">Remarks</th>\
+      <th colspan="1">'+colHeader5+'</th>\
     </tr>\
     <tr>\
       <td colspan="1"><br/></td>\
