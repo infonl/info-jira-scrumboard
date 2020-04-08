@@ -29,6 +29,7 @@ function appendLink() {
 			//console.log(escapedStoryTitle);
 			var storyId = $( this ).find('.ghx-key a').text();
 			var storyLink = window.location.origin + $( this ).find('.ghx-key a').attr('href');
+			var storyType = $( this ).find('.ghx-type').attr('title');
 			var storyPoints = $( this ).find('.ghx-estimate').text();
 			
 			
@@ -55,6 +56,11 @@ function appendLink() {
 			  copyText3 += "<br>";
 			  
 			// for Testers (for Confluence page)
+				var colHeader1 = 'Test user(s) /<br/>Test data';
+				var colHeader2 = 'Scenario/ steps to execute';
+				var colHeader3 = 'Expected result';
+				var colHeader4 = 'Actual result';
+			
 				copyTextTestScenarioTable += '<tr>\
       <td class="highlight-blue" colspan="5" data-highlight-colour="blue">\
         <div class="content-wrapper">\
@@ -70,10 +76,10 @@ function appendLink() {
       </td>\
     </tr>\
     <tr>\
-      <th colspan="1">Test user(s) /<br/>Test data</th>\
-      <th colspan="1">Scenario/ steps to execute</th>\
-      <th colspan="1">Expected result</th>\
-      <th colspan="1">Actual result \
+      <th colspan="1">'+colHeader1+'</th>\
+      <th colspan="1">'+colHeader2+'</th>\
+      <th colspan="1">'+colHeader3+'</th>\
+      <th colspan="1">'+colHeader4+' \
       <ac:structured-macro ac:macro-id="9f354d68-9d24-463c-a6da-89e18d4b7b3a" ac:name="status" ac:schema-version="1"> \
               <ac:parameter ac:name="title">Not completed</ac:parameter>\
             </ac:structured-macro>\
@@ -98,7 +104,7 @@ function appendLink() {
       <td colspan="1"><br/></td>\
       <td colspan="1"> \
       Check all the above scenarios in below browsers for a desktop:<br/>\
-		- IE11<br/>\
+		- IE11 (not supported, but tested for awareness)<br/>\
 		- Edge<br/>\
 		- Firefox<br/>\
 		- Mac Safari<br/>\
@@ -158,7 +164,7 @@ function appendLink() {
 		// make the source a bit readable
 		copyTextTestScenarioTable = copyTextTestScenarioTable.replace(/newtablerow/g, "<br/>");
 		
-		var copyTextAll = copyText + '<br><hr><br>' + copyText2 + '<br><hr><br>' + copyText3 + '<br><hr><br>&lt;!-- start test scenario tablerows --&gt;' + copyTextTestScenarioTable + '&lt;!-- end test scenario tablerows --&gt;<br><hr><br>' + copyText5;
+		var copyTextAll = copyText + '<br><hr><br>' + copyText2 + '<br><hr><br>' + copyText3 + '<br><hr>&lt;table&gt;&lt;tbody&gt;<br>&lt;!-- start test scenario tablerows --&gt;' + copyTextTestScenarioTable + '&lt;!-- end test scenario tablerows --&gt;<br>&lt;/tbody&gt;&lt;/table&gt;<br><hr><br>' + copyText5;
 		window.open('about:blank').document.body.innerHTML = copyTextAll;
 	});
 
