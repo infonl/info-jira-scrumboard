@@ -21,6 +21,7 @@ function appendLink() {
 		var copyText3 = '';
 		var copyTextTestScenarioTable = '';
 		var copyText5 = '';
+		var jiraServerId = '';
 		
 		$( ".js-issue-list .ghx-selected" ).each(function( index ) {
 		
@@ -68,7 +69,7 @@ function appendLink() {
           <p> \
             <ac:structured-macro ac:macro-id="e8ecdcdd-735c-46d6-9457-8fb9a71f4600" ac:name="jira" ac:schema-version="1">\
               <ac:parameter ac:name="server">JIRA</ac:parameter>\
-              <ac:parameter ac:name="serverId">dc4113ac-c9e8-3325-8d4b-2d59cfd3df7b</ac:parameter>\
+              <ac:parameter ac:name="serverId">'+jiraServerId+'</ac:parameter>\
               <ac:parameter ac:name="key">'+storyId+'</ac:parameter>\
             </ac:structured-macro>\
           </p>\
