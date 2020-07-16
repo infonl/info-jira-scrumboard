@@ -25,7 +25,7 @@ Tips for exceptional cases
 - When in Condensed view: press Z to switch view and show/hide Details pane
 
 
-Backlog
+Backlog view
 =====================
 - Create a copy-pastable list of issuetitles + links. Easy for in Slack/Mail (share list of stories that need refinement) and Powerpoint/Keynote (List stories in the Sprint Review presentation)
 - Experimental: HTML blocks for adding a test-results table to Confluence/wiki
