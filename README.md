@@ -5,6 +5,7 @@ Requires a Chrome extension (User JavaScript and CSS) which allows you to inject
 
 Active Sprints board
 ===========================
+From the Active Sprints board there are several changes/features:
 - Adapt the Active Sprints-board so more issues fit on. 
 - Creates 2-1-1-2 columns instead of 1-1-1-1 and reduces the height of a card. Although the code is now aiming for a 4 column scrumboard, there is a 5 column option in comment so easy to implement.
 
@@ -27,6 +28,7 @@ Tips for exceptional cases
 
 Backlog view
 =====================
+From the Backlog-view there are several features:
 - Create a copy-pastable list of issuetitles + links. Easy for in Slack/Mail (share list of stories that need refinement) and Powerpoint/Keynote (List stories in the Sprint Review presentation)
 - Experimental: HTML blocks for adding a test-results table to Confluence/wiki
 - Click on Backlog-header to open a new tab with the name + link of each issues
