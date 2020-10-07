@@ -21,6 +21,7 @@ function appendLink() {
 		var copyText3 = '';
 		var copyTextTestScenarioTable = '';
 		var copyText5 = '';
+		var copyText6 = '';
 		var jiraServerId = '';
 		
 		$( ".js-issue-list .ghx-selected" ).each(function( index ) {
@@ -40,6 +41,12 @@ function appendLink() {
 			  copyText += storyLink;
 			  copyText += "<br>";
 			  
+			 // for POs copy-paste into Slack
+			  copyText6 += '<a href="' + storyLink + '">';
+			  copyText6 += storyId + '</a> - ' + storyTitle;
+			  copyText6 += "</a>";
+			  copyText6 += "<br>";
+			
 			// for SMs (for Powerpoint presentation)
 			  copyText2 += '<b>'+storyTitle + '</b>';
 			  copyText2 += "<br>";
@@ -166,7 +173,7 @@ function appendLink() {
 		// make the source a bit readable
 		copyTextTestScenarioTable = copyTextTestScenarioTable.replace(/newtablerow/g, "<br/>");
 		
-		var copyTextAll = copyText + '<br><hr><br>' + copyText2 + '<br><hr><br>' + copyText3 + '<br><hr>&lt;table&gt;&lt;tbody&gt;<br>&lt;!-- start test scenario tablerows --&gt;' + copyTextTestScenarioTable + '&lt;!-- end test scenario tablerows --&gt;<br>&lt;/tbody&gt;&lt;/table&gt;<br><hr><br>' + copyText5;
+		var copyTextAll = copyText + '<br><hr><br>' + copyText6 + '<br><hr><br>' + copyText2 + '<br><hr><br>' + copyText3 + '<br><hr>&lt;table&gt;&lt;tbody&gt;<br>&lt;!-- start test scenario tablerows --&gt;' + copyTextTestScenarioTable + '&lt;!-- end test scenario tablerows --&gt;<br>&lt;/tbody&gt;&lt;/table&gt;<br><hr><br>' + copyText5;
 		window.open('about:blank').document.body.innerHTML = copyTextAll;
 	});
 
