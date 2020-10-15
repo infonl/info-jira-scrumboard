@@ -31,7 +31,8 @@ Backlog view
 From the Backlog-view there are several features:
 - Create a copy-pastable list of issuetitles + links. Easy for in Slack/Mail (share list of stories that need refinement) and Powerpoint/Keynote (List stories in the Sprint Review presentation)
 - Experimental: copy-pastable HTML blocks for adding a test-results table to Confluence/wiki
-Howto:
+
+Howto
 - Select a number of issues in the backlog view (use CMD/Ctrl of Shift to select multiple)
 - Click on link called "show copyable list" on the right side of the Backlog-header to open a new tab with the name + link of each issues
 (if this link doesn't show up: refresh the page)
