@@ -3,13 +3,18 @@
 // Create a copy-pastable list of HTML-tablerows for testscenarios which can be used in Confluence or any othe HTML page.
 //
 // click on Backlog-header to open a new tab with the name + link of each issues
-// @author Oebe, Stefan
+// @author Oebe, Stefan, Leroy
 //
 
 
 
 // IDEA: if story is Done (.ghx-info span = To Do) , collapse it (.ghx-swimlane needs .ghx-closed)
 
+var timer;
+
+function appendLoader() {
+	$('.js-marker-backlog-header .ghx-name').html('Backlog - loading copyable list...');
+}
 
 function appendLink() {
 	$('.js-marker-backlog-header .ghx-name').html('Backlog - <u>show copyable list</u>');
@@ -189,16 +194,33 @@ function escapeHtml(text) {
 
   return text.replace(/[&<>"']/g, function(m) { return map[m]; });
 }
-$(function () {
+
+
+(function () {
+	// show loader
+	setTimeout(function() {
+		appendLoader();
+	}, 500); 
+	
 	// wait 2 secs for the navbar / header to popup
 	setTimeout(function() {
 		$('.aui-nav-item').on('click', function () {
+			// click on Backlog view button
 			if ($.contains(this, $('.agile-icon-plan').get(0))) {
 				setTimeout(function () {
 					appendLink();
 				}, 1200);
 			}
 		});
+		
+		// change of Quick filter or Release/Epic
+		$(document).on('click', '.js-quickfilter-button, .ghx-classification-item', function (e) {
+			clearTimeout(timer);
+			timer = setTimeout(function() {
+				appendLink();
+			}, 2000)
+		})
+
 		appendLink();
-	}, 4000); // wait for ajax-list to be loaded.. if link fails to show: increase amount here
-});
+	}, 2000); // wait for ajax-list to be loaded.. if link fails to show: increase amount here
+})();
