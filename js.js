@@ -220,7 +220,15 @@ function escapeHtml(text) {
 				appendLink();
 			}, 2000)
 		})
-
+		
+		// change of search-filter (at left side of Quick filters)
+		$(document).on('blur', '#ghx-backlog-search-input', function (e) {
+			clearTimeout(timer);
+			timer = setTimeout(function() {
+				appendLink();
+			}, 1000)
+		})
+		
 		appendLink();
 	}, 2000); // wait for ajax-list to be loaded.. if link fails to show: increase amount here
 })();
