@@ -16,6 +16,16 @@ function appendLoader() {
 function appendLink() {
 	$('.js-marker-backlog-header .ghx-name').html('Backlog - <u>show copyable list</u>');	
 	
+	// specific css for 4 or 5 columns scrumboard
+	var iAmountOfColumns = $( "#ghx-column-header-group .ghx-column").length;
+	if (iAmountOfColumns == 5 ) {
+		// no changes (yet)
+	} else {
+		// wide - small - small - wide (more space in columns that often have a lot of stories)
+		var gridtemplatecolumns = "33% 16% 16% 33%";
+		$( ".ghx-rapid-views #gh #ghx-work #ghx-pool-column .ghx-columns, .ghx-rapid-views #gh #ghx-work #ghx-pool-column #ghx-column-headers, .ghx-rapid-views #gh #ghx-work #ghx-pool-column .ghx-zone-overlay-table" ).css("grid-template-columns", gridtemplatecolumns);
+	}
+
 	// when clicked on Backlog-header 
 	$('.js-marker-backlog-header .ghx-name').on('click', function () {
 		var copyText  = '';
