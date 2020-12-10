@@ -3,13 +3,10 @@
 // Create a copy-pastable list of HTML-tablerows for testscenarios which can be used in Confluence or any othe HTML page.
 //
 // click on Backlog-header to open a new tab with the name + link of each issues
-// @author Oebe, Stefan, Leroy
+// @author Oebe, Stefan, Leroy, Rinki, Vlad
 //
 
-
-
-// IDEA: if story is Done (.ghx-info span = To Do) , collapse it (.ghx-swimlane needs .ghx-closed)
-
+var jiraServerId = ''; // fill for Confluence macros to JIRA stories
 var timer;
 
 function appendLoader() {
@@ -17,8 +14,8 @@ function appendLoader() {
 }
 
 function appendLink() {
-	$('.js-marker-backlog-header .ghx-name').html('Backlog - <u>show copyable list</u>');
-
+	$('.js-marker-backlog-header .ghx-name').html('Backlog - <u>show copyable list</u>');	
+	
 	// when clicked on Backlog-header 
 	$('.js-marker-backlog-header .ghx-name').on('click', function () {
 		var copyText  = '';
@@ -27,7 +24,7 @@ function appendLink() {
 		var copyTextTestScenarioTable = '';
 		var copyText5 = '';
 		var copyText6 = '';
-		var jiraServerId = '';
+		
 		
 		$( ".js-issue-list .ghx-selected" ).each(function( index ) {
 		
@@ -75,7 +72,8 @@ function appendLink() {
 				var colHeader4 = 'Actual result';
 				var colHeader5 = 'Remarks';
 			
-				copyTextTestScenarioTable += '<tr>\
+				copyTextTestScenarioTable += '<h2>'+storyId+' - '+escapedStoryTitle+'</h2>\
+	<table><tr>\
       <td class="highlight-blue" colspan="5" data-highlight-colour="blue">\
         <div class="content-wrapper">\
           <p> \
@@ -85,7 +83,6 @@ function appendLink() {
               <ac:parameter ac:name="key">'+storyId+'</ac:parameter>\
             </ac:structured-macro>\
           </p>\
-          <h4>'+storyId+' - '+escapedStoryTitle+'</h4>\
         </div>\
       </td>\
     </tr>\
@@ -169,7 +166,7 @@ function appendLink() {
       </td>\
       <td colspan="1"><br/></td>\
       <td colspan="1"><br/></td>\
-    </tr>' + 'newtablerow';
+    </tr></table>' + 'newtablerow';
 			 
 			
 		});
@@ -178,7 +175,7 @@ function appendLink() {
 		// make the source a bit readable
 		copyTextTestScenarioTable = copyTextTestScenarioTable.replace(/newtablerow/g, "<br/>");
 		
-		var copyTextAll = copyText + '<br><hr><br>' + copyText6 + '<br><hr><br>' + copyText2 + '<br><hr><br>' + copyText3 + '<br><hr>&lt;table&gt;&lt;tbody&gt;<br>&lt;!-- start test scenario tablerows --&gt;' + copyTextTestScenarioTable + '&lt;!-- end test scenario tablerows --&gt;<br>&lt;/tbody&gt;&lt;/table&gt;<br><hr><br>' + copyText5;
+		var copyTextAll = copyText + '<br><hr><br>' + copyText6 + '<br><hr><br>' + copyText2 + '<br><hr><br>' + copyText3 + '<br><hr>&lt;!-- start test scenario tables --&gt;' + copyTextTestScenarioTable + '&lt;!-- end test scenario tables --&gt;<br><br><hr><br>' + copyText5;
 		window.open('about:blank').document.body.innerHTML = copyTextAll;
 	});
 
@@ -219,16 +216,15 @@ function escapeHtml(text) {
 			timer = setTimeout(function() {
 				appendLink();
 			}, 2000)
-		})
-		
+		})		
 		// change of search-filter (at left side of Quick filters)
 		$(document).on('blur', '#ghx-backlog-search-input', function (e) {
 			clearTimeout(timer);
 			timer = setTimeout(function() {
 				appendLink();
-			}, 1000)
+			}, 2000)
 		})
-		
+
 		appendLink();
 	}, 2000); // wait for ajax-list to be loaded.. if link fails to show: increase amount here
 })();
