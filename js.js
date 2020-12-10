@@ -3,7 +3,7 @@
 // Create a copy-pastable list of HTML-tablerows for testscenarios which can be used in Confluence or any othe HTML page.
 //
 // click on Backlog-header to open a new tab with the name + link of each issues
-// @author Oebe, Stefan, Leroy, Rinki, Vlad
+// @author Oebe, Stefan, Leroy, Rinki, Vlad, Javad
 //
 
 var jiraServerId = ''; // fill for Confluence macros to JIRA stories
@@ -79,13 +79,42 @@ function appendLink() {
 
 	// when clicked on Backlog-header 
 	$('.js-marker-backlog-header .ghx-name').on('click', function () {
+		console.log("1\n")
+		var jsonDescription = {};
+		var counter = 0;
+		$( ".js-issue-list .ghx-selected" ).each(function( index) {
+			
+			var listlength = $( ".js-issue-list .ghx-selected" ).length;
+			var storyId = $( this ).find('.ghx-key a').text();
+			
+			// get story information
+			$.getJSON( "/jira/rest/greenhopper/1.0/xboard/issue/details.json?rapidViewId=88&issueIdOrKey=" + storyId, function( data ) {
+				// get SPs
+				jsonDescription[storyId] = data.tabs.defaultTabs[2].sections[0].html;
+				counter++;
+				console.log("counter" + counter + " of " + listlength)
+				if (counter == listlength) {
+					RenderText (jsonDescription);
+				}
+			});
+		});
+		
+	
+	});
+
+}
+
+function htmlEntities(str) {
+    return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+function RenderText (description) {
 		var copyText  = '';
 		var copyText2 = '';
 		var copyText3 = '';
 		var copyTextTestScenarioTable = '';
 		var copyText5 = '';
 		var copyText6 = '';
-		
 		
 		$( ".js-issue-list .ghx-selected" ).each(function( index ) {
 		
@@ -96,7 +125,6 @@ function appendLink() {
 			var storyLink = window.location.origin + $( this ).find('.ghx-key a').attr('href');
 			var storyType = $( this ).find('.ghx-type').attr('title');
 			var storyPoints = $( this ).find('.ghx-estimate').text();
-			
 			
 			// for POs copy-paste into Slack
 			  copyText += storyTitle;
@@ -125,7 +153,7 @@ function appendLink() {
 			// for POs copy-paste into Slack
 			  copyText3 += storyTitle;
 			  copyText3 += "<br>";
-			  
+
 			// for Testers (for Confluence page)
 				var colHeader1 = 'Test user(s) /<br/>Test data';
 				var colHeader2 = 'Scenario/ steps to execute';
@@ -159,7 +187,7 @@ function appendLink() {
       <th colspan="1">'+colHeader5+'</th>\
     </tr>\
     <tr>\
-      <td colspan="1"><br/></td>\
+      <td colspan="1">'+description[storyId]+'</td>\
       <td colspan="1"><br/></td>\
       <td colspan="1"><br/></td>\
       <td colspan="1"><br/></td>\
@@ -230,7 +258,8 @@ function appendLink() {
     </tr></table>' + 'newtablerow';
 			 
 			
-		});
+		}); // each : end
+		
 		copyTextTestScenarioTable = escapeHtml(copyTextTestScenarioTable)
 		
 		// make the source a bit readable
@@ -238,9 +267,8 @@ function appendLink() {
 		
 		var copyTextAll = copyText + '<br><hr><br>' + copyText6 + '<br><hr><br>' + copyText2 + '<br><hr><br>' + copyText3 + '<br><hr>&lt;!-- start test scenario tables --&gt;' + copyTextTestScenarioTable + '&lt;!-- end test scenario tables --&gt;<br><br><hr><br>' + copyText5;
 		window.open('about:blank').document.body.innerHTML = copyTextAll;
-	});
-
 }
+
 function escapeHtml(text) {
   var map = {
     '&': '&amp;',
