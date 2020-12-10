@@ -16,12 +16,6 @@ Show even more condensed version of Active Sprints board with in High Contract-v
     line-height: 1.6em;
 }
 
-/* 4 column: 2-1-1-2 columns  */
-.ghx-rapid-views #gh #ghx-work #ghx-pool-column .ghx-columns, .ghx-rapid-views #gh #ghx-work #ghx-pool-column #ghx-column-headers, .ghx-rapid-views #gh #ghx-work #ghx-pool-column .ghx-zone-overlay-table {
-    grid-template-columns: 33% 16% 16% 33%;
-    /* 5 coloumn grid-template-columns: 18% 21% 21% 20% 18%; */
-}
-
 .ghx-column:nth-child(1) .ghx-issue-subtask, 
 .ghx-column:nth-last-child(1) .ghx-issue-subtask {
 	width: 39%;
