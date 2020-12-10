@@ -15,7 +15,7 @@ function appendLoader() {
 
 function appendLink() {
 	$('.js-marker-backlog-header .ghx-name').html('Backlog - <u>show copyable list</u>');	
-	
+
 	// specific css for 4 or 5 columns scrumboard
 	var iAmountOfColumns = $( "#ghx-column-header-group .ghx-column").length;
 	if (iAmountOfColumns == 5 ) {
@@ -25,6 +25,31 @@ function appendLink() {
 		var gridtemplatecolumns = "33% 16% 16% 33%";
 		$( ".ghx-rapid-views #gh #ghx-work #ghx-pool-column .ghx-columns, .ghx-rapid-views #gh #ghx-work #ghx-pool-column #ghx-column-headers, .ghx-rapid-views #gh #ghx-work #ghx-pool-column .ghx-zone-overlay-table" ).css("grid-template-columns", gridtemplatecolumns);
 	}
+
+	// add Collapse Done button
+	$('.ghx-column:nth-last-child(1) .ghx-column-title').html('Done - <u>Collapse Done</u>');
+	
+	// when clicked on "Collapse Done" button
+	$('.ghx-column:nth-last-child(1) .ghx-column-title').on('click', function () {
+		
+		// loop all stories
+		$( ".ghx-swimlane" ).each(function( index, val ) {
+
+			// collapse all
+			$( this ).addClass('ghx-closed');
+		
+			var	story = $( this )
+			// find story status
+			var storyStatus = story.find(".jira-issue-status-lozenge").text();
+		
+			//console.log("-" + storyStatus + "-\n\n");
+			
+			// open In Progress / To do ones
+			if (storyStatus == 'In Progress' || storyStatus == 'To Do') {
+				$( this ).removeClass('ghx-closed');
+			}
+		});
+	});
 
 	// when clicked on Backlog-header 
 	$('.js-marker-backlog-header .ghx-name').on('click', function () {
