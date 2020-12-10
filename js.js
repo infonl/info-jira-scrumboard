@@ -25,6 +25,32 @@ function appendLink() {
 		var gridtemplatecolumns = "33% 16% 16% 33%";
 		$( ".ghx-rapid-views #gh #ghx-work #ghx-pool-column .ghx-columns, .ghx-rapid-views #gh #ghx-work #ghx-pool-column #ghx-column-headers, .ghx-rapid-views #gh #ghx-work #ghx-pool-column .ghx-zone-overlay-table" ).css("grid-template-columns", gridtemplatecolumns);
 	}
+	
+	// loop all stories and add SPs to titles
+	$( ".ghx-swimlane" ).each(function( index, val ) {
+		var storyId = $( this ).find(".ghx-parent-key").text();
+
+		if (!storyId) {
+			return true;
+		}
+		
+		// get SPs
+		var storySP;
+		var storyTitle = $( this ).find('.ghx-swimlane-header .ghx-summary');
+		
+		// get story information
+		$.getJSON( "/jira/rest/greenhopper/1.0/xboard/issue/details.json?rapidViewId=88&issueIdOrKey=" + storyId, function( data ) {
+			// get SPs
+			storySP = data.tabs.defaultTabs[0].fields[2].value;
+			
+			// add SPs to title
+			if (typeof storySP == "undefined") {
+				storyTitle.html(storyTitle.html() + " unestimated");
+			} else {
+				storyTitle.html(storyTitle.html() + ' <span class="storyEstimation">' + storySP + '</span>');
+			}
+		});
+	});
 
 	// add Collapse Done button
 	$('.ghx-column:nth-last-child(1) .ghx-column-title').html('Done - <u>Collapse Done</u>');
