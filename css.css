@@ -8,6 +8,16 @@ Show even more condensed version of Active Sprints board with in High Contract-v
 @author Oebe
 */
 
+.storyEstimation {
+    display: inline-block;
+    background-color: #deebff;
+    border-color: #deebff;
+    color: #0747a6;
+    font-size: 14px;
+    line-height: 1.45;
+    border-radius: 3px;
+}
+
 /* less height for card */ 
 .ghx-issue .ghx-issue-content {
     min-height:  44px;
