@@ -7,13 +7,17 @@ Active Sprints board
 ===========================
 From the Active Sprints board there are several changes/features:
 - Adapt the Active Sprints-board so more issues fit on. 
-- Creates 2-1-1-2 columns instead of 1-1-1-1 and reduces the height of a card. Although the code is now aiming for a 4 column scrumboard, there is a 5 column option in comment so easy to implement.
+- Creates 2-1-1-2 columns instead of 1-1-1-1 and reduces the height of a card. Although the code is now aiming for a 4 column scrumboard, if you have a 5 column if will switch back to normal.
+- (optional) add the Story Point amount to each story-swimlane
 
 Condensed High Contract-view (press Z multiple times). 
 Optimal for larger screens for Daily Scrums/Daily standups.
 - Creates 3-1-1-3 columns 
 - Hides IDs, labels and priorities of subtasks: more space for titles + assignees
 - Hides Details-pane to create a steady, non-moving screen while dragging 
+- clicking on issueID opens issue in new tab
+- hides Done subtasks when more than 3. Includes Show more toggle.
+- "Collapse Done only"-button that expands all issues, except for the Done ones. For improved overview during standup.
 
 Tips
 - press Z to enable Fullscreen -> High contract (=condensed) -> Normal view -> Fullscren etc
@@ -30,7 +34,7 @@ Backlog view
 =====================
 From the Backlog-view there are several features:
 - Create a copy-pastable list of issuetitles + links. Easy for in Slack/Mail (share list of stories that need refinement) and Powerpoint/Keynote (List stories in the Sprint Review presentation)
-- Experimental: copy-pastable HTML blocks for adding a test-results table to Confluence/wiki
+- (optional) copy-pastable HTML block for generating test-scenarios for Confluence/wiki
 
 ![Show copyable list link](https://user-images.githubusercontent.com/26110975/98917631-e9d65c00-24cc-11eb-840a-a41362b43e67.png)
 
@@ -53,6 +57,7 @@ https://chrome.google.com/webstore/detail/user-javascript-and-css/nbhcbdghjpllgm
 9. Hit Save
 
 Open your Active sprints-board in JIRA and hit refresh (F5).. and have fun!
+At the top of the JavaScript codes you can disable and enable some options.
 
 NOTE: css.css and js.js are updated more frequently than the settings-file since that is easier to update for us. So we recommend updating your freshly installed version with the procedure below.
 
