@@ -6,9 +6,6 @@
 // @author Oebe, Stefan, Leroy, Rinki, Vlad, Javad
 //
 
-var jiraServerId = ''; // fill for Confluence macros to JIRA stories
-var timer;
-
 // =========== configuration : start ===============
 
 // Show the amount of Story Point on the Active Sprints board aka scrumboard
