@@ -10,11 +10,11 @@ var jiraServerId = ''; // fill for Confluence macros to JIRA stories
 var timer;
 
 function appendLoader() {
-	$('.js-marker-backlog-header .ghx-name').html('Backlog - loading copyable list...');
+	//$('.js-marker-backlog-header .ghx-name').append('Backlog - loading copyable list...');
 }
 
 function appendLink() {
-	$('.js-marker-backlog-header .ghx-name').html('Backlog - <u>show copyable list</u>');	
+	$('.js-marker-backlog-header .ghx-name').append(' <span class="customMiniBtn">show copyable list</span>');	
 
 	// specific css for 4 or 5 columns scrumboard
 	var iAmountOfColumns = $( "#ghx-column-header-group .ghx-column").length;
@@ -47,13 +47,13 @@ function appendLink() {
 			if (typeof storySP == "undefined") {
 				storyTitle.html(storyTitle.html() + " unestimated");
 			} else {
-				storyTitle.html(storyTitle.html() + ' <span class="storyEstimation">' + storySP + '</span>');
+				storyTitle.html(storyTitle.html() + ' <span class="storyEstimation">' + storySP + ' SP</span>');
 			}
 		});
 	});
 
 	// add Collapse Done button
-	$('.ghx-column:nth-last-child(1) .ghx-column-title').html('Done - <u>Collapse Done</u>');
+	$('.ghx-column:nth-last-child(1) .ghx-column-title').append(' <span class="customMiniBtn">Collapse Done only</span>');
 	
 	// when clicked on "Collapse Done" button
 	$('.ghx-column:nth-last-child(1) .ghx-column-title').on('click', function () {
@@ -62,24 +62,22 @@ function appendLink() {
 		$( ".ghx-swimlane" ).each(function( index, val ) {
 
 			// collapse all
-			$( this ).addClass('ghx-closed');
+			$( this ).removeClass('ghx-closed');
 		
 			var	story = $( this )
 			// find story status
 			var storyStatus = story.find(".jira-issue-status-lozenge").text();
-		
-			//console.log("-" + storyStatus + "-\n\n");
 			
 			// open In Progress / To do ones
-			if (storyStatus == 'In Progress' || storyStatus == 'To Do') {
-				$( this ).removeClass('ghx-closed');
+			if (storyStatus == 'Done') {
+				$( this ).addClass('ghx-closed');
 			}
 		});
 	});
 
 	// when clicked on Backlog-header 
 	$('.js-marker-backlog-header .ghx-name').on('click', function () {
-		console.log("1\n")
+		
 		var jsonDescription = {};
 		var counter = 0;
 		$( ".js-issue-list .ghx-selected" ).each(function( index) {
@@ -92,7 +90,8 @@ function appendLink() {
 				// get SPs
 				jsonDescription[storyId] = data.tabs.defaultTabs[2].sections[0].html;
 				counter++;
-				console.log("counter" + counter + " of " + listlength)
+				
+				// only render text if all async processes are done
 				if (counter == listlength) {
 					RenderText (jsonDescription);
 				}
@@ -109,12 +108,12 @@ function htmlEntities(str) {
 }
 
 function RenderText (description) {
-		var copyText  = '';
-		var copyText2 = '';
-		var copyText3 = '';
+		var copyTextAndLink  = '';
+		var copyTextPresentation = '';
+		var copyTextTitles = '';
 		var copyTextTestScenarioTable = '';
-		var copyText5 = '';
-		var copyText6 = '';
+		var copyTextLarge = '';
+		var copyTextSlack = '';
 		
 		$( ".js-issue-list .ghx-selected" ).each(function( index ) {
 		
@@ -126,34 +125,34 @@ function RenderText (description) {
 			var storyType = $( this ).find('.ghx-type').attr('title');
 			var storyPoints = $( this ).find('.ghx-estimate').text();
 			
+			
 			// for POs copy-paste into Slack
-			  copyText += storyTitle;
-			  copyText += "<br>";
-			  copyText += storyLink;
-			  copyText += "<br>";
+			  copyTextAndLink += storyTitle;
+			  copyTextAndLink += "<br>";
+			  copyTextAndLink += storyLink;
+			  copyTextAndLink += "<br>";
 			  
 			 // for POs copy-paste into Slack
-			  copyText6 += '<a href="' + storyLink + '">';
-			  copyText6 += storyId + '</a> - ' + storyTitle;
-			  copyText6 += "</a>";
-			  copyText6 += "<br>";
+			  copyTextSlack += '<a href="' + storyLink + '">';
+			  copyTextSlack += storyId + '</a> - ' + storyTitle + " (" + storyPoints + ")";
+			  copyTextSlack += "</a>";
+			  copyTextSlack += "<br>";
 			
 			// for SMs (for Powerpoint presentation)
-			  copyText2 += '<b>'+storyTitle + '</b>';
-			  copyText2 += "<br>";
-			  copyText2 += storyId + ' (' + storyPoints + ' SP) - ' ;
-			  copyText2 += "<br>";	 
+			  copyTextPresentation += '<b>'+storyTitle + '</b>';
+			  copyTextPresentation += "<br>";
+			  copyTextPresentation += storyId + ' (' + storyPoints + ' SP) - ' ;
+			  copyTextPresentation += "<br>";	 
 			  
 			// for SMs (for printed stories - JIRA has an option for this as well)
-			  copyText5 += '<h2>'+storyTitle + '</h2>';
-			  //copyText5 += "<br>";
-			  copyText5 += '<h3>' + storyId + ' ' + storyPoints + ' SP</h3>' ;
-			  copyText5 += "<br><hr><br>";
+			  copyTextLarge += '<h2>'+storyTitle + '</h2>';
+			  copyTextLarge += '<h3>' + storyId + ' ' + storyPoints + ' SP</h3>' ;
+			  copyTextLarge += "<br><hr><br>";
 			  
-			// for POs copy-paste into Slack
-			  copyText3 += storyTitle;
-			  copyText3 += "<br>";
-
+			// for POs copy-paste clean list
+			  copyTextTitles += storyTitle;
+			  copyTextTitles += "<br>";
+			  
 			// for Testers (for Confluence page)
 				var colHeader1 = 'Test user(s) /<br/>Test data';
 				var colHeader2 = 'Scenario/ steps to execute';
@@ -187,8 +186,8 @@ function RenderText (description) {
       <th colspan="1">'+colHeader5+'</th>\
     </tr>\
     <tr>\
-      <td colspan="1">'+description[storyId]+'</td>\
       <td colspan="1"><br/></td>\
+      <td colspan="1">'+description[storyId]+'</td>\
       <td colspan="1"><br/></td>\
       <td colspan="1"><br/></td>\
       <td colspan="1"><br/></td>\
@@ -258,14 +257,14 @@ function RenderText (description) {
     </tr></table>' + 'newtablerow';
 			 
 			
-		}); // each : end
+		});	// each : end
 		
-		copyTextTestScenarioTable = escapeHtml(copyTextTestScenarioTable)
+			copyTextTestScenarioTable = escapeHtml(copyTextTestScenarioTable)
 		
 		// make the source a bit readable
 		copyTextTestScenarioTable = copyTextTestScenarioTable.replace(/newtablerow/g, "<br/>");
 		
-		var copyTextAll = copyText + '<br><hr><br>' + copyText6 + '<br><hr><br>' + copyText2 + '<br><hr><br>' + copyText3 + '<br><hr>&lt;!-- start test scenario tables --&gt;' + copyTextTestScenarioTable + '&lt;!-- end test scenario tables --&gt;<br><br><hr><br>' + copyText5;
+		var copyTextAll = copyTextAndLink + '<br><hr><br>' + copyTextSlack + '<br><hr><br>' + copyTextPresentation + '<br><hr><br>' + copyTextTitles + '<br><hr>&lt;!-- start test scenario  --&gt;' + copyTextTestScenarioTable + '&lt;!-- end test scenario html --&gt;<br><br><hr><br>' + copyTextLarge;
 		window.open('about:blank').document.body.innerHTML = copyTextAll;
 }
 
@@ -292,11 +291,11 @@ function escapeHtml(text) {
 	setTimeout(function() {
 		$('.aui-nav-item').on('click', function () {
 			// click on Backlog view button
-			if ($.contains(this, $('.agile-icon-plan').get(0))) {
+			//if ($.contains(this, $('.agile-icon-plan').get(0))) {
 				setTimeout(function () {
 					appendLink();
 				}, 1200);
-			}
+		//	}
 		});
 		
 		// change of Quick filter or Release/Epic
