@@ -25,6 +25,7 @@ var colHeader4 = 'Actual result';
 var colHeader5 = 'Remarks';
 				
 // Fill in jiraServerId for Confluence macros to JIRA stories
+// You can get this ID by looking into the source of a confluence page while you added a JIRA marcro in that page, or ask your admin: https://confluence.atlassian.com/adminjiraserver/finding-your-server-id-938847652.html
 var jiraServerId = ''; 
 
 // =========== configuration : end ===============
