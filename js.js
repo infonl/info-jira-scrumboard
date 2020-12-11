@@ -17,6 +17,16 @@ var bShowStoryPointsOnScrumboard = true;
 // Adjust the sizes of the columns on the Active Sprints board aka scrumboard
 var bAdjustColumnSizesOnScrumboard = true; 
 
+// Add rows for browsertest in the Test Scenarios (set to false for backend-teams)
+var bAddBrowserchecksInTestScenarios = false; 
+
+// set columnheaders in the Test Scenarios
+var colHeader1 = 'Test user(s) /<br/>Test data';
+var colHeader2 = 'Scenario/ steps to execute';
+var colHeader3 = 'Expected result';
+var colHeader4 = 'Actual result';
+var colHeader5 = 'Remarks';
+				
 // Fill in jiraServerId for Confluence macros to JIRA stories
 var jiraServerId = ''; 
 
@@ -27,7 +37,7 @@ function appendLink() {
 	$('.ghx-mode-planning .js-quickfilter-selector').append('| <span class="customMiniBtn showCopyableListButton">Show copyable list</span>');	
 
 	if (bAdjustColumnSizesOnScrumboard) {
-		// specific css for 4 or 5 columns scrumboard
+		// specific column width for 4 or 5 columns scrumboard
 		var iAmountOfColumns = $( "#ghx-column-header-group .ghx-column").length;
 		if (iAmountOfColumns == 5 ) {
 			// no changes (yet)
@@ -89,11 +99,12 @@ function appendLink() {
 		});
 	});
 
-	// when clicked on Backlog-header 
+	// when clicked on "Show copyable list"-button 
 	$('.showCopyableListButton').on('click', function () {
 		
 		var jsonDescription = {};
 		var counter = 0;
+		// loop all selected stories
 		$( ".js-issue-list .ghx-selected" ).each(function( index) {
 			
 			var listlength = $( ".js-issue-list .ghx-selected" ).length;
@@ -101,6 +112,7 @@ function appendLink() {
 			
 			// get story information
 			$.getJSON( "/jira/rest/greenhopper/1.0/xboard/issue/details.json?rapidViewId=88&issueIdOrKey=" + storyId, function( data ) {
+
 				// get SPs
 				jsonDescription[storyId] = data.tabs.defaultTabs[2].sections[0].html;
 				counter++;
@@ -168,11 +180,7 @@ function RenderText (description) {
 			  copyTextTitles += "<br>";
 			  
 			// for Testers (for Confluence page)
-				var colHeader1 = 'Test user(s) /<br/>Test data';
-				var colHeader2 = 'Scenario/ steps to execute';
-				var colHeader3 = 'Expected result';
-				var colHeader4 = 'Actual result';
-				var colHeader5 = 'Remarks';
+				
 			
 				copyTextTestScenarioTable += '<h2>'+storyId+' - '+escapedStoryTitle+'</h2>\
 	<table><tr>\
@@ -212,8 +220,10 @@ function RenderText (description) {
       <td colspan="1"><br/></td>\
       <td colspan="1"><br/></td>\
       <td colspan="1"><br/></td>\
-    </tr>\
-    <tr>\
+    </tr>';
+    
+	if (bAddBrowserchecksInTestScenarios) {
+  	copyTextTestScenarioTable += '<tr>\
       <td colspan="1"><br/></td>\
       <td colspan="1"> \
       Check all the above scenarios in below browsers for a desktop:<br/>\
@@ -268,7 +278,10 @@ function RenderText (description) {
       </td>\
       <td colspan="1"><br/></td>\
       <td colspan="1"><br/></td>\
-    </tr></table>' + 'newtablerow';
+    </tr>';
+	}
+
+  	copyTextTestScenarioTable += '</table>' + 'newtablerow';
 			 
 			
 		});	// each : end
