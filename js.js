@@ -9,12 +9,8 @@
 var jiraServerId = ''; // fill for Confluence macros to JIRA stories
 var timer;
 
-function appendLoader() {
-	//$('.js-marker-backlog-header .ghx-name').append('Backlog - loading copyable list...');
-}
-
 function appendLink() {
-	$('.js-marker-backlog-header .ghx-name').append(' <span class="customMiniBtn">show copyable list</span>');	
+	$('.js-quickfilter-selector').append('| <span class="customMiniBtn showCopyableListButton">Show copyable list</span>');	
 
 	// specific css for 4 or 5 columns scrumboard
 	var iAmountOfColumns = $( "#ghx-column-header-group .ghx-column").length;
@@ -45,7 +41,7 @@ function appendLink() {
 			
 			// add SPs to title
 			if (typeof storySP == "undefined") {
-				storyTitle.html(storyTitle.html() + " unestimated");
+				storyTitle.html(storyTitle.html() + ' <span class="storyEstimation">unestimated</span>');
 			} else {
 				storyTitle.html(storyTitle.html() + ' <span class="storyEstimation">' + storySP + ' SP</span>');
 			}
@@ -53,10 +49,10 @@ function appendLink() {
 	});
 
 	// add Collapse Done button
-	$('.ghx-column:nth-last-child(1) .ghx-column-title').append(' <span class="customMiniBtn">Collapse Done only</span>');
+	$('.ghx-column:nth-last-child(1) .ghx-column-title').append(' <span class="customMiniBtn collapseDoneBtn">Collapse Done only</span>');
 	
 	// when clicked on "Collapse Done" button
-	$('.ghx-column:nth-last-child(1) .ghx-column-title').on('click', function () {
+	$('.collapseDoneBtn').on('click', function () {
 		
 		// loop all stories
 		$( ".ghx-swimlane" ).each(function( index, val ) {
@@ -76,7 +72,7 @@ function appendLink() {
 	});
 
 	// when clicked on Backlog-header 
-	$('.js-marker-backlog-header .ghx-name').on('click', function () {
+	$('.showCopyableListButton').on('click', function () {
 		
 		var jsonDescription = {};
 		var counter = 0;
@@ -282,10 +278,6 @@ function escapeHtml(text) {
 
 
 (function () {
-	// show loader
-	setTimeout(function() {
-		appendLoader();
-	}, 500); 
 	
 	// wait 2 secs for the navbar / header to popup
 	setTimeout(function() {
