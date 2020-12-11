@@ -8,14 +8,37 @@ Show even more condensed version of Active Sprints board with in High Contract-v
 @author Oebe
 */
 
+
 .storyEstimation {
-    display: inline-block;
-    background-color: #deebff;
+	display: inline-block;
+	background-color: #deebff;
     border-color: #deebff;
     color: #0747a6;
-    font-size: 14px;
+    font-size: 11px;
     line-height: 1.45;
     border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin: 0;
+    padding: 2px 5px 3px;
+    text-align: center;
+}
+
+.customMiniBtn {
+    border: 1px solid transparent;
+    -webkit-border-radius: 3px 3px 3px 3px;
+    border-radius: 3px 3px 3px 3px;
+    display: inline-block;
+    line-height: 1;
+    margin: 0 5px 0 0;
+    padding: 7px 10px;
+    font-weight: 400;
+    color: #0052cc;
+    cursor: pointer;
+}
+.customMiniBtn:hover {
+    border-color:  #c1c7d0;
+
 }
 
 /* less height for card */ 
@@ -164,5 +187,4 @@ Show even more condensed version of Active Sprints board with in High Contract-v
 .ghx-zone-overlay-table div:nth-child(1), .ghx-zone-overlay-table div:nth-last-child(1){
    width: 64%;
 }
-
 
