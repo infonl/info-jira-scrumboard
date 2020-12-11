@@ -9,13 +9,13 @@
 // =========== configuration : start ===============
 
 // Show the amount of Story Point on the Active Sprints board aka scrumboard
-var bShowStoryPointsOnScrumboard = true; 
+var bShowStoryPointsOnScrumboard = true;
 
 // Adjust the sizes of the columns on the Active Sprints board aka scrumboard
-var bAdjustColumnSizesOnScrumboard = true; 
+var bAdjustColumnSizesOnScrumboard = true;
 
 // Add rows for browsertest in the Test Scenarios (set to false for backend-teams)
-var bAddBrowserchecksInTestScenarios = false; 
+var bAddBrowserchecksInTestScenarios = false;
 
 // set columnheaders in the Test Scenarios
 var colHeader1 = 'Test user(s) /<br/>Test data';
@@ -23,16 +23,16 @@ var colHeader2 = 'Scenario/ steps to execute';
 var colHeader3 = 'Expected result';
 var colHeader4 = 'Actual result';
 var colHeader5 = 'Remarks';
-				
+
 // Fill in jiraServerId for Confluence macros to JIRA stories
 // You can get this ID by looking into the source of a confluence page while you added a JIRA marcro in that page, or ask your admin: https://confluence.atlassian.com/adminjiraserver/finding-your-server-id-938847652.html
-var jiraServerId = ''; 
+var jiraServerId = '';
 
 // =========== configuration : end ===============
 
 var timer;
 function appendLink() {
-	$('.ghx-mode-planning .js-quickfilter-selector').append('| <span class="customMiniBtn showCopyableListButton">Show copyable list</span>');	
+	$('.ghx-mode-planning .js-quickfilter-selector').append('| <span class="customMiniBtn showCopyableListButton">Show copyable list</span>');
 
 	if (bAdjustColumnSizesOnScrumboard) {
 		// specific column width for 4 or 5 columns scrumboard
@@ -45,25 +45,25 @@ function appendLink() {
 			$( ".ghx-rapid-views #gh #ghx-work #ghx-pool-column .ghx-columns, .ghx-rapid-views #gh #ghx-work #ghx-pool-column #ghx-column-headers, .ghx-rapid-views #gh #ghx-work #ghx-pool-column .ghx-zone-overlay-table" ).css("grid-template-columns", gridtemplatecolumns);
 		}
 	}
-	
+
 	// loop all stories and add SPs to titles
 	if (bShowStoryPointsOnScrumboard) {
 		$( ".ghx-swimlane" ).each(function( index, val ) {
 			var storyId = $( this ).find(".ghx-parent-key").text();
-	
+
 			if (!storyId) {
 				return true;
 			}
-			
+
 			// get SPs
 			var storySP;
 			var storyTitle = $( this ).find('.ghx-swimlane-header .ghx-summary');
-			
+
 			// get story information
 			$.getJSON( "/jira/rest/greenhopper/1.0/xboard/issue/details.json?rapidViewId=88&issueIdOrKey=" + storyId, function( data ) {
 				// get SPs
 				storySP = data.tabs.defaultTabs[0].fields[2].value;
-				
+
 				// add SPs to title
 				if (typeof storySP == "undefined") {
 					storyTitle.html(storyTitle.html() + ' <span class="storyEstimation">unestimated</span>');
@@ -76,20 +76,20 @@ function appendLink() {
 
 	// add Collapse Done button
 	$('.ghx-column:nth-last-child(1) .ghx-column-title').append(' <span class="customMiniBtn collapseDoneBtn">Collapse Done only</span>');
-	
+
 	// when clicked on "Collapse Done" button
 	$('.collapseDoneBtn').on('click', function () {
-		
+
 		// loop all stories
 		$( ".ghx-swimlane" ).each(function( index, val ) {
 
 			// collapse all
 			$( this ).removeClass('ghx-closed');
-		
+
 			var	story = $( this )
 			// find story status
 			var storyStatus = story.find(".jira-issue-status-lozenge").text();
-			
+
 			// open In Progress / To do ones
 			if (storyStatus == 'Done') {
 				$( this ).addClass('ghx-closed');
@@ -97,32 +97,32 @@ function appendLink() {
 		});
 	});
 
-	// when clicked on "Show copyable list"-button 
+	// when clicked on "Show copyable list"-button
 	$('.showCopyableListButton').on('click', function () {
-		
+
 		var jsonDescription = {};
 		var counter = 0;
 		// loop all selected stories
 		$( ".js-issue-list .ghx-selected" ).each(function( index) {
-			
+
 			var listlength = $( ".js-issue-list .ghx-selected" ).length;
 			var storyId = $( this ).find('.ghx-key a').text();
-			
+
 			// get story information
 			$.getJSON( "/jira/rest/greenhopper/1.0/xboard/issue/details.json?rapidViewId=88&issueIdOrKey=" + storyId, function( data ) {
 
 				// get SPs
 				jsonDescription[storyId] = data.tabs.defaultTabs[2].sections[0].html;
 				counter++;
-				
+
 				// only render text if all async processes are done
 				if (counter == listlength) {
 					RenderText (jsonDescription);
 				}
 			});
 		});
-		
-	
+
+
 	});
 
 }
@@ -138,9 +138,9 @@ function RenderText (description) {
 		var copyTextTestScenarioTable = '';
 		var copyTextLarge = '';
 		var copyTextSlack = '';
-		
+
 		$( ".js-issue-list .ghx-selected" ).each(function( index ) {
-		
+
 			var storyTitle = $( this ).find('.ghx-summary').text();
 			var escapedStoryTitle = storyTitle.replace(/&/g, "&amp;amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 			//console.log(escapedStoryTitle);
@@ -148,38 +148,38 @@ function RenderText (description) {
 			var storyLink = window.location.origin + $( this ).find('.ghx-key a').attr('href');
 			var storyType = $( this ).find('.ghx-type').attr('title');
 			var storyPoints = $( this ).find('.ghx-estimate').text();
-			
-			
+
+
 			// for POs copy-paste into Slack
 			  copyTextAndLink += storyTitle;
 			  copyTextAndLink += "<br>";
 			  copyTextAndLink += storyLink;
 			  copyTextAndLink += "<br>";
-			  
+
 			 // for POs copy-paste into Slack
 			  copyTextSlack += '<a href="' + storyLink + '">';
 			  copyTextSlack += storyId + '</a> - ' + storyTitle + " (" + storyPoints + ")";
 			  copyTextSlack += "</a>";
 			  copyTextSlack += "<br>";
-			
+
 			// for SMs (for Powerpoint presentation)
 			  copyTextPresentation += '<b>'+storyTitle + '</b>';
 			  copyTextPresentation += "<br>";
 			  copyTextPresentation += storyId + ' (' + storyPoints + ' SP) - ' ;
-			  copyTextPresentation += "<br>";	 
-			  
+			  copyTextPresentation += "<br>";
+
 			// for SMs (for printed stories - JIRA has an option for this as well)
 			  copyTextLarge += '<h2>'+storyTitle + '</h2>';
 			  copyTextLarge += '<h3>' + storyId + ' ' + storyPoints + ' SP</h3>' ;
 			  copyTextLarge += "<br><hr><br>";
-			  
+
 			// for POs copy-paste clean list
 			  copyTextTitles += storyTitle;
 			  copyTextTitles += "<br>";
-			  
+
 			// for Testers (for Confluence page)
-				
-			
+
+
 				copyTextTestScenarioTable += '<h2>'+storyId+' - '+escapedStoryTitle+'</h2>\
 	<table><tr>\
       <td class="highlight-blue" colspan="5" data-highlight-colour="blue">\
@@ -219,7 +219,7 @@ function RenderText (description) {
       <td colspan="1"><br/></td>\
       <td colspan="1"><br/></td>\
     </tr>';
-    
+
 	if (bAddBrowserchecksInTestScenarios) {
   	copyTextTestScenarioTable += '<tr>\
       <td colspan="1"><br/></td>\
@@ -280,15 +280,15 @@ function RenderText (description) {
 	}
 
   	copyTextTestScenarioTable += '</table>' + 'newtablerow';
-			 
-			
+
+
 		});	// each : end
-		
+
 			copyTextTestScenarioTable = escapeHtml(copyTextTestScenarioTable)
-		
+
 		// make the source a bit readable
 		copyTextTestScenarioTable = copyTextTestScenarioTable.replace(/newtablerow/g, "<br/>");
-		
+
 		var copyTextAll = copyTextAndLink + '<br><hr><br>' + copyTextSlack + '<br><hr><br>' + copyTextPresentation + '<br><hr><br>' + copyTextTitles + '<br><hr>&lt;!-- start test scenario  --&gt;' + copyTextTestScenarioTable + '&lt;!-- end test scenario html --&gt;<br><br><hr><br>' + copyTextLarge;
 		window.open('about:blank').document.body.innerHTML = copyTextAll;
 }
@@ -307,7 +307,7 @@ function escapeHtml(text) {
 
 
 (function () {
-	
+
 	// wait 2 secs for the navbar / header to popup
 	setTimeout(function() {
 		$('.aui-nav-item').on('click', function () {
@@ -318,20 +318,51 @@ function escapeHtml(text) {
 				}, 1200);
 		//	}
 		});
-		
+
 		// change of Quick filter or Release/Epic
 		$(document).on('click', '.js-quickfilter-button, .ghx-classification-item', function (e) {
 			clearTimeout(timer);
 			timer = setTimeout(function() {
 				appendLink();
 			}, 2000)
-		})		
+		})
 		// change of search-filter (at left side of Quick filters)
 		$(document).on('blur', '#ghx-backlog-search-input', function (e) {
 			clearTimeout(timer);
 			timer = setTimeout(function() {
 				appendLink();
 			}, 2000)
+		})
+
+		// Make all ticket links open in a new tab
+		$(document).on('click', 'a.js-detailview, a.js-key-link',
+			function(e) {
+				var href = $(this).attr('href');
+				if (href) {
+					window.open(href, '_blank');
+					e.stopPropagation();
+				}
+			}
+		);
+
+		// Hide finished subtasks above threshold amount
+		var doneSubtasksLimit = 2;
+		$('.ghx-columns').find('.ghx-column:last').each(function (index) {
+			var issues = $(this).find('.ghx-issue');
+			var doneCount = issues.length;
+			if(doneCount > doneSubtasksLimit) {
+				var showButton = issues.eq(doneSubtasksLimit).clone();
+				showButton.addClass('showMoreSubtasks');
+				showButton.html('Show more (+' + (doneCount - doneSubtasksLimit) + ')');
+				$(this).append(showButton);
+				showButton.on('click', function(){
+					$(this).hide().parent().find('.hiddenSubtask').show();
+				})
+
+				issues.each(function(index){
+					if(index >= doneSubtasksLimit) $(this).addClass('hiddenSubtask').hide();
+				})
+			}
 		})
 
 		appendLink();

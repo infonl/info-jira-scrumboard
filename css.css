@@ -1,4 +1,4 @@
-/* 
+/*
 Adapt the Active Sprints-board so more issues fit on
 
 Creates 2-1-1-2 columns instead of 1-1-1-1 and reduces the height of a card
@@ -41,7 +41,7 @@ Show even more condensed version of Active Sprints board with in High Contract-v
 
 }
 
-/* less height for card */ 
+/* less height for card */
 .ghx-issue .ghx-issue-content {
     min-height:  44px;
 }
@@ -49,14 +49,14 @@ Show even more condensed version of Active Sprints board with in High Contract-v
     line-height: 1.6em;
 }
 
-.ghx-column:nth-child(1) .ghx-issue-subtask, 
+.ghx-column:nth-child(1) .ghx-issue-subtask,
 .ghx-column:nth-last-child(1) .ghx-issue-subtask {
 	width: 39%;
 	float: left;
 }
 
 /* compact view (Z-key)  */
-.ghx-header-compact .ghx-column:nth-child(1) .ghx-issue-subtask, 
+.ghx-header-compact .ghx-column:nth-child(1) .ghx-issue-subtask,
 .ghx-header-compact .ghx-column:nth-last-child(1) .ghx-issue-subtask {
 	width: 42%;
 }
@@ -109,6 +109,10 @@ Show even more condensed version of Active Sprints board with in High Contract-v
  padding-right: 40px;
 }
 
+.ghx-issue .ghx-card-footer {
+    margin: 0;
+}
+
 
 /* === high contraxt view === */
 
@@ -126,7 +130,7 @@ Show even more condensed version of Active Sprints board with in High Contract-v
 }
 
 .ghx-contrast-high .ghx-issue .ghx-issue-content {
-    min-height:  22px;
+    min-height:  34px;
 }
 
 .ghx-contrast-high .ghx-column-title {
@@ -170,14 +174,13 @@ Show even more condensed version of Active Sprints board with in High Contract-v
 	font-size: 11px;
 }
 
-
-/* hide some if more that 8 subtasks in Done*/
-
-.ghx-contrast-high .ghx-column:nth-last-child(1) .ghx-issue-subtask:nth-child(n+6)
-{
-    display:none;
+.ghx-contrast-high .ghx-issue-fields .ghx-summary .ghx-inner {
+    max-height: 3em;
 }
 
+.showMoreSubtasks {
+    cursor: pointer;
+}
 
 /* 2-1-1-2 columns  ghx-zone-overlay-table -> you see when dragging a task */
 .ghx-zone-overlay-table div {
