@@ -78,9 +78,9 @@ Happy paperless standups!
 FAQ
 ===========================
 *I don't see the nicer scrumboard. What is wrong?*
-I asume you use Chrome and the extension and script installed via the procdure above. 
+I assume you use Chrome and the extension and script installed via the procdure above. 
 - Go to your JIRA.
-- Click on the blue-red 'User JavaScript and CSS' extension icon in Chrome.
+- Click on the blue-red 'User JavaScript and CSS' extension icon in Chrome. (If you dint see this, hit the puzzlepiece icon and pin the icon)
 - Do you see a url under 'Rules for this page'?
 - if not, click on the Settings-wheel icon of this extension
  - Do you see a url under Sites-tab?
