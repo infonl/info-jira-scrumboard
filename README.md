@@ -1,6 +1,8 @@
 # jira-scrumboard
 Tweaking the JIRA scrumboard. Creates a clear and concise JIRA scrumboard. Avoids the need to scroll all the time through your JIRA Scrum board so easier to show on a screen or share via videocall.
 
+In addition this offers a great way to create a list of stories whick can be used in email, chat, presentations, Slack etc. Great for Product Owners who want to share a list with their stakeholders or development team.
+ 
 Requires a Chrome extension ("User JavaScript and CSS") which allows you to inject your own JavaScript and CSS rules to any page, like your JIRA page. So this tweak does not require any change in JIRA, since it's not a JIRA plugin. See Install sequence below.
 
 Active Sprints board
