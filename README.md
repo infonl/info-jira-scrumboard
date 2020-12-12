@@ -40,7 +40,7 @@ From the Backlog-view there are several features:
 
 Howto
 - Select a number of issues in the backlog view (use CMD/Ctrl of Shift to select multiple)
-- Click on link called "show copyable list" on the right side of the Backlog-header to open a new tab with the name + link of each issues
+- Click on link called "show copyable list" on the right side of the Quick filters to open a new tab with the name + link of each issues
 (if this link doesn't show up: refresh the page)
 
 Install
@@ -57,7 +57,7 @@ https://chrome.google.com/webstore/detail/user-javascript-and-css/nbhcbdghjpllgm
 9. Hit Save
 
 Open your Active sprints-board in JIRA and hit refresh (F5).. and have fun!
-At the top of the JavaScript codes you can disable and enable some options.
+At the top of the JavaScript code you can disable and enable some options.
 
 NOTE: css.css and js.js are updated more frequently than the settings-file since that is easier to update for us. So we recommend updating your freshly installed version with the procedure below.
 
@@ -83,11 +83,11 @@ I asume you use Chrome and the extension and script installed via the procdure a
 - Click on the blue-red 'User JavaScript and CSS' extension icon in Chrome.
 - Do you see a url under 'Rules for this page'?
 - if not, click on the Settings-wheel icon of this extension
--- Do you see a url under Sites-tab?
---- if not: redo the install procedure above
---- if yes: you got in installed right, but the url is not correct 
---- click on the url in the list 
---- change the url to your JIRA url
+ - Do you see a url under Sites-tab?
+  - if not: redo the install procedure above
+  - if yes: you got in installed right, but the url is not correct 
+  - click on the url in the list 
+  - change the url to your JIRA url
 - If you see a url under 'Rules for this page': make sure the toggle in front of it is green and make sure you refresh your JIRA-page.
 
 
