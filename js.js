@@ -62,11 +62,13 @@ function appendLink() {
 			// get SPs
 			var storySP;
 			var storyTitle = $( this ).find('.ghx-swimlane-header .ghx-summary');
-
+			var urlParams = new URLSearchParams(window.location.search);
+			var rapidViewId = urlParams.get('rapidView');
+			
 			// get story information
-			$.getJSON( "/jira/rest/greenhopper/1.0/xboard/issue/details.json?rapidViewId=88&issueIdOrKey=" + storyId, function( data ) {
+			$.getJSON( "../rest/greenhopper/1.0/xboard/issue/details.json?rapidViewId=" + rapidViewId + "&issueIdOrKey=" + storyId, function( data ) {
 				// get SPs
-				storySP = data.tabs.defaultTabs[0].fields[2].value;
+				if (data) storySP = data.tabs.defaultTabs[0].fields[2].value;
 
 				// add SPs to title
 				if (typeof storySP == "undefined") {
@@ -111,12 +113,14 @@ function appendLink() {
 
 			var listlength = $( ".js-issue-list .ghx-selected" ).length;
 			var storyId = $( this ).find('.ghx-key a').text();
-
+			var urlParams = new URLSearchParams(window.location.search);
+			var rapidViewId = urlParams.get('rapidView');
+			
 			// get story information
-			$.getJSON( "/jira/rest/greenhopper/1.0/xboard/issue/details.json?rapidViewId=88&issueIdOrKey=" + storyId, function( data ) {
+			$.getJSON( "../rest/greenhopper/1.0/xboard/issue/details.json?rapidViewId=" + rapidViewId + "&issueIdOrKey=" + storyId, function( data ) {
 
-				// get SPs
-				jsonDescription[storyId] = data.tabs.defaultTabs[2].sections[0].html;
+				// get Description
+				if (data) jsonDescription[storyId] = data.tabs.defaultTabs[2].sections[0].html;
 				counter++;
 
 				// only render text if all async processes are done
