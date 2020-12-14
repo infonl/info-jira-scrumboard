@@ -69,9 +69,10 @@ To get the lastest version:
 1. Go to your JIRA
 2. Click 'User JavaScript and CSS' icon 
 3. Open the two panes (js/css) in the plugin
-4. Open https://raw.githubusercontent.com/infonl/jira-scrumboard/master/css.css And copy-paste content in the CSS pane. This will replace the old css.
-5. Open https://raw.githubusercontent.com/infonl/jira-scrumboard/master/js.js And copy-paste content in the JS pane. This will replace the old js.
-6. Save
+4. (optional) create a backup of the content of both panes if you've made manual changes/configuration-settings.
+5. Open https://raw.githubusercontent.com/infonl/jira-scrumboard/master/css.css And copy-paste content in the CSS pane. This will replace the old css.
+6. Open https://raw.githubusercontent.com/infonl/jira-scrumboard/master/js.js And copy-paste content in the JS pane. This will replace the old js.
+7. Save
 
 Go to your JIRA and refresh page and have fun!
 
@@ -79,11 +80,11 @@ Happy paperless standups!
 
 FAQ
 ===========================
-*I dont like ..... *
+**I dont like .....**
 
 In the JS-part, see the configuration settings if this functionality can be turned off. If not, please submit an issue in GitHub and we can work on it.
 
-*I don't see the nicer scrumboard. What is wrong?*
+**I don't see the nicer scrumboard. What is wrong?**
 
 I assume you use Chrome and the extension and script installed via the procdure above. 
 - Go to your JIRA.
@@ -98,9 +99,13 @@ I assume you use Chrome and the extension and script installed via the procdure 
 - If you see a url under 'Rules for this page': make sure the toggle in front of it is green and make sure you refresh your JIRA-page.
 
 
-*I get errors in the Test Scenarios once pasted them into Confluence*
+**I get errors in the Test Scenarios once pasted them into Confluence**
 
 In the JS-part, somewhere in the configuration settings: Fill in jiraServerId for Confluence macros to JIRA stories
 
 You can get this ID by looking into the source of a confluence page while you added a JIRA marcro in that page, or ask your admin: https://confluence.atlassian.com/adminjiraserver/finding-your-server-id-938847652.html
+
+**I want a different Test scenario table**
+Great, some headers can be configurated at the top of the JavaScript code. Want more? it's easy: ask your local frontender to change the Javascript code.
+Do make of backup of this code, because if you upgrade of the plugin manually it will revert your beautuful changes.
 
