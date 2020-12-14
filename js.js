@@ -14,6 +14,7 @@ var bShowStoryPointsOnScrumboard = true;
 // Adjust the sizes of the columns on the Active Sprints board aka scrumboard
 var bAdjustColumnSizesOnScrumboard = true;
 
+/* Test Sceanrios feature ======= */
 
 // Show HTML for Test Scenarios when clicking on Show copyable list
 var bShowTestScenarios = true;
@@ -297,12 +298,12 @@ function RenderText (description) {
 		// make the source a bit readable
 		copyTextTestScenarioTable = copyTextTestScenarioTable.replace(/newtablerow/g, "<br/>");
 
-		var copyTextAll = copyTextAndLink + '<br><hr><br>' + copyTextSlack + '<br><hr><br>' + copyTextPresentation + '<br><hr><br>' + copyTextTitles;
+		var copyTextAll = 'CHAT/MESSAGING (that dont accept links)<br><br>' + copyTextAndLink + '<br><hr>CHAT/MESSAGING/SLACK<br><br>' + copyTextSlack + '<br><hr>PRESENTATIONS<br><br>' + copyTextPresentation + '<br><hr><br>' + copyTextTitles;
 		
 		// show output in separate tab(s)
 		if (bShowTestScenarios) {
 			// separate tab for easier copy-pasting
-			window.open('about:blank').document.body.innerHTML = copyTextTestScenarioTable;
+			window.open('about:blank').document.body.innerHTML = '&lt;!-- start test scenario HTML --&gt;<br>' +  copyTextTestScenarioTable;
 		}
 		window.open('about:blank').document.body.innerHTML = copyTextAll;
 }
