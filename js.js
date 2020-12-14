@@ -14,6 +14,9 @@ var bShowStoryPointsOnScrumboard = true;
 // Adjust the sizes of the columns on the Active Sprints board aka scrumboard
 var bAdjustColumnSizesOnScrumboard = true;
 
+// Hide finished subtasks above threshold amount
+var doneSubtasksLimit = 5;
+
 /* Test Sceanrios feature ======= */
 
 // Show HTML for Test Scenarios when clicking on Show copyable list
@@ -360,8 +363,6 @@ function escapeHtml(text) {
 			}
 		);
 
-		// Hide finished subtasks above threshold amount
-		var doneSubtasksLimit = 2;
 		$('.ghx-columns').find('.ghx-column:last').each(function (index) {
 			var issues = $(this).find('.ghx-issue');
 			var doneCount = issues.length;
