@@ -14,7 +14,7 @@ var bShowStoryPointsOnScrumboard = true;
 // Adjust the sizes of the columns on the Active Sprints board aka scrumboard
 var bAdjustColumnSizesOnScrumboard = true;
 
-// Hide finished subtasks above threshold amount
+// Hide Done subtasks above threshold amount
 var doneSubtasksLimit = 5;
 
 /* Test Sceanrios feature ======= */
@@ -84,12 +84,14 @@ function appendLink() {
 		});
 	}
 
-	// add Collapse Done button
+	// add Collapse Done Only button
 	$('.ghx-column:nth-last-child(1) .ghx-column-title').append(' <span class="customMiniBtn collapseDoneBtn">Collapse Done only</span>');
 
 	// when clicked on "Collapse Done" button
 	$('.collapseDoneBtn').on('click', function () {
-
+			
+		var aClosedLanes = [];
+		var sClosedLanes = '';
 		// loop all stories
 		$( ".ghx-swimlane" ).each(function( index, val ) {
 
@@ -103,8 +105,18 @@ function appendLink() {
 			// open In Progress / To do ones
 			if (storyStatus == 'Done') {
 				$( this ).addClass('ghx-closed');
+				// sotre for saving in LocalStorage
+				aClosedLanes.push(index + 1);
 			}
 		});
+
+		var urlParams = new URLSearchParams(window.location.search);
+		var rapidViewId = urlParams.get('rapidView');
+		// Retrieve the object from storage, add settings and save it
+		var retrievedObject = localStorage.getItem('gh.boardSettings.' + rapidViewId);
+		var jsonRetrievedObject = JSON.parse(retrievedObject);
+		jsonRetrievedObject['collapsedSwimlanes'] = aClosedLanes;
+		localStorage.setItem('gh.boardSettings.' + rapidViewId, JSON.stringify(jsonRetrievedObject));
 	});
 
 	// when clicked on "Show copyable list"-button
@@ -112,6 +124,13 @@ function appendLink() {
 
 		var jsonDescription = {};
 		var counter = 0;
+		
+		// if no issue selected: select all from sprint
+		if ($( ".js-issue-list .ghx-selected" ).length === 0) {
+			$( ".ghx-sprint-group .js-issue" ).addClass('ghx-selected');
+		}
+		
+		
 		// loop all selected stories
 		$( ".js-issue-list .ghx-selected" ).each(function( index) {
 
@@ -363,6 +382,7 @@ function escapeHtml(text) {
 			}
 		);
 
+		// Hide Done subtasks above threshold amount
 		$('.ghx-columns').find('.ghx-column:last').each(function (index) {
 			var issues = $(this).find('.ghx-issue');
 			var doneCount = issues.length;
