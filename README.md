@@ -79,6 +79,9 @@ Happy paperless standups!
 
 FAQ
 ===========================
+*I dont like ..... *
+In the JS-part, see the configuration settings if this functionality can be turned off. If not, please submit an issue in GitHub and we can work on it.
+
 *I don't see the nicer scrumboard. What is wrong?*
 I assume you use Chrome and the extension and script installed via the procdure above. 
 - Go to your JIRA.
@@ -94,7 +97,7 @@ I assume you use Chrome and the extension and script installed via the procdure 
 
 
 *I get errors in the Test Scenarios once pasted them into Confluence*
-IN the JS-part, somewhere in the configuration settings: Fill in jiraServerId for Confluence macros to JIRA stories
+In the JS-part, somewhere in the configuration settings: Fill in jiraServerId for Confluence macros to JIRA stories
 
 You can get this ID by looking into the source of a confluence page while you added a JIRA marcro in that page, or ask your admin: https://confluence.atlassian.com/adminjiraserver/finding-your-server-id-938847652.html
 
