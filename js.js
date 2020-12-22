@@ -87,36 +87,29 @@ function appendLink() {
 	// add Collapse Done Only button
 	$('.ghx-column:nth-last-child(1) .ghx-column-title').append(' <span class="customMiniBtn collapseDoneBtn">Collapse Done only</span>');
 
-	// when clicked on "Collapse Done" button
+	// when clicked on "Collapse Done Only" button
 	$('.collapseDoneBtn').on('click', function () {
 			
-		var aClosedLanes = [];
-		var sClosedLanes = '';
-		// loop all stories
-		$( ".ghx-swimlane" ).each(function( index, val ) {
-
+		// loop all stories and expand them all first
+		$( ".ghx-swimlane.ghx-closed" ).each(function( index, val ) {
 			// collapse all
-			$( this ).removeClass('ghx-closed');
-
+			$( this ).find(".js-expander").click();
+		});
+		
+		// then collapse the Done ones
+		$( ".ghx-swimlane" ).each(function( index, val ) {
+			
 			var	story = $( this )
 			// find story status
 			var storyStatus = story.find(".jira-issue-status-lozenge").text();
 
-			// open In Progress / To do ones
+			// Close Done ones
 			if (storyStatus == 'Done') {
-				$( this ).addClass('ghx-closed');
-				// sotre for saving in LocalStorage
-				aClosedLanes.push(index + 1);
+				$( this ).find(".js-expander").click();
 			}
 		});
+		// ps we're using the .click() here because JIRA has some internal logic connected to it, like storing the setting in memory and localStorage.
 
-		var urlParams = new URLSearchParams(window.location.search);
-		var rapidViewId = urlParams.get('rapidView');
-		// Retrieve the object from storage, add settings and save it
-		var retrievedObject = localStorage.getItem('gh.boardSettings.' + rapidViewId);
-		var jsonRetrievedObject = JSON.parse(retrievedObject);
-		jsonRetrievedObject['collapsedSwimlanes'] = aClosedLanes;
-		localStorage.setItem('gh.boardSettings.' + rapidViewId, JSON.stringify(jsonRetrievedObject));
 	});
 
 	// when clicked on "Show copyable list"-button
