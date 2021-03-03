@@ -39,9 +39,79 @@ var jiraServerId = '';
 // =========== configuration : end ===============
 
 var timer;
-function appendLink() {
+
+
+
+function AddBacklogFunctionalities() {
 	$('.ghx-mode-planning .js-quickfilter-selector').append('| <span class="customMiniBtn showCopyableListButton">Show copyable list</span>');
 
+	//  add Collapse Done Only button (if it isnt in there already)
+	if ($('.ghx-column:nth-last-child(1) .ghx-column-title:contains("Collapse Done only")').length === 0) {
+			$('.ghx-column:nth-last-child(1) .ghx-column-title').append(' <span class="customMiniBtn collapseDoneBtn">Collapse Done only</span>');
+
+		// when clicked on "Collapse Done Only" button
+		$('.collapseDoneBtn').on('click', function () {
+	
+			// loop all stories and expand them all first
+			$( ".ghx-swimlane.ghx-closed" ).each(function( index, val ) {
+				// collapse all
+				$( this ).find(".js-expander").click();
+				// ps we're using the .click() here because JIRA has some internal logic connected to it, like storing the setting in memory and localStorage.
+			});
+			
+			// then collapse the Done ones
+			$( ".ghx-swimlane" ).each(function( index, val ) {
+				
+				var	story = $( this )
+				// find story status
+				var storyStatus = story.find(".jira-issue-status-lozenge").text();
+	
+				// Close Done ones
+				if (storyStatus == 'Done') {
+					$( this ).find(".js-expander").click();
+				}
+			});
+		});
+	}
+
+	// when clicked on "Show copyable list"-button
+	$('.showCopyableListButton').on('click', function () {
+
+		var jsonDescription = {};
+		var counter = 0;
+		
+		// if no issue selected: select all from sprint
+		if ($( ".js-issue-list .ghx-selected" ).length === 0) {
+			$( ".ghx-sprint-group .js-issue" ).addClass('ghx-selected');
+		}
+		
+		
+		// loop all selected stories
+		$( ".js-issue-list .ghx-selected" ).each(function( index) {
+
+			var listlength = $( ".js-issue-list .ghx-selected" ).length;
+			var storyId = $( this ).find('.ghx-key a').text();
+			var urlParams = new URLSearchParams(window.location.search);
+			var rapidViewId = urlParams.get('rapidView');
+			
+			// get story information
+			$.getJSON( "../rest/greenhopper/1.0/xboard/issue/details.json?rapidViewId=" + rapidViewId + "&issueIdOrKey=" + storyId, function( data ) {
+
+				// get Description
+				if (data) jsonDescription[storyId] = data.tabs.defaultTabs[2].sections[0].html;
+				counter++;
+
+				// only render text if all async processes are done
+				if (counter == listlength) {
+					RenderText (jsonDescription);
+				}
+			});
+		});
+	});
+}
+
+function AddSprintBacklogFunctionalities() {
+	
 	if (bAdjustColumnSizesOnScrumboard) {
 		// specific column width for 4 or 5 columns scrumboard
 		var iAmountOfColumns = $( "#ghx-column-header-group .ghx-column").length;
@@ -86,71 +156,11 @@ function appendLink() {
 			});
 		});
 	}
+}
 
-
-	//  add Collapse Done Only button (if it isnt in there already)
-	if ($('.ghx-column:nth-last-child(1) .ghx-column-title:contains("Collapse Done only")').length === 0) {
-			$('.ghx-column:nth-last-child(1) .ghx-column-title').append(' <span class="customMiniBtn collapseDoneBtn">Collapse Done only</span>');
-	}
-
-	// when clicked on "Collapse Done Only" button
-	$('.collapseDoneBtn').on('click', function () {
-
-		// loop all stories and expand them all first
-		$( ".ghx-swimlane.ghx-closed" ).each(function( index, val ) {
-			// collapse all
-			$( this ).find(".js-expander").click();
-			// ps we're using the .click() here because JIRA has some internal logic connected to it, like storing the setting in memory and localStorage.
-		});
-		
-		// then collapse the Done ones
-		$( ".ghx-swimlane" ).each(function( index, val ) {
-			
-			var	story = $( this )
-			// find story status
-			var storyStatus = story.find(".jira-issue-status-lozenge").text();
-
-			// Close Done ones
-			if (storyStatus == 'Done') {
-				$( this ).find(".js-expander").click();
-			}
-		});
-	});
-
-	// when clicked on "Show copyable list"-button
-	$('.showCopyableListButton').on('click', function () {
-
-		var jsonDescription = {};
-		var counter = 0;
-		
-		// if no issue selected: select all from sprint
-		if ($( ".js-issue-list .ghx-selected" ).length === 0) {
-			$( ".ghx-sprint-group .js-issue" ).addClass('ghx-selected');
-		}
-		
-		
-		// loop all selected stories
-		$( ".js-issue-list .ghx-selected" ).each(function( index) {
-
-			var listlength = $( ".js-issue-list .ghx-selected" ).length;
-			var storyId = $( this ).find('.ghx-key a').text();
-			var urlParams = new URLSearchParams(window.location.search);
-			var rapidViewId = urlParams.get('rapidView');
-			
-			// get story information
-			$.getJSON( "../rest/greenhopper/1.0/xboard/issue/details.json?rapidViewId=" + rapidViewId + "&issueIdOrKey=" + storyId, function( data ) {
-
-				// get Description
-				if (data) jsonDescription[storyId] = data.tabs.defaultTabs[2].sections[0].html;
-				counter++;
-
-				// only render text if all async processes are done
-				if (counter == listlength) {
-					RenderText (jsonDescription);
-				}
-			});
-		});
-	});
+function appendLink() {
+	AddBacklogFunctionalities();
+	AddSprintBacklogFunctionalities();
 }
 
 function htmlEntities(str) {
