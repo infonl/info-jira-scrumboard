@@ -73,12 +73,15 @@ function appendLink() {
 			$.getJSON( "../rest/greenhopper/1.0/xboard/issue/details.json?rapidViewId=" + rapidViewId + "&issueIdOrKey=" + storyId, function( data ) {
 				// get SPs
 				if (data) storySP = data.tabs.defaultTabs[0].fields[2].value;
+				var storyHtml = storyTitle.html();
 
-				// add SPs to title
-				if (typeof storySP == "undefined") {
-					storyTitle.html(storyTitle.html() + ' <span class="storyEstimation">unestimated</span>');
-				} else {
-					storyTitle.html(storyTitle.html() + ' <span class="storyEstimation">' + storySP + ' SP</span>');
+				// add SPs to title (if it isnt in there already)
+				if (storyHtml.indexOf('storyEstimation') === -1) {
+					if (typeof storySP == "undefined") {
+						storyTitle.html(storyTitle.html() + ' <span class="storyEstimation">unestimated</span>');
+					} else {
+						storyTitle.html(storyTitle.html() + ' <span class="storyEstimation">' + storySP + ' SP</span>');
+					}
 				}
 			});
 		});
@@ -89,11 +92,11 @@ function appendLink() {
 
 	// when clicked on "Collapse Done Only" button
 	$('.collapseDoneBtn').on('click', function () {
-			
 		// loop all stories and expand them all first
 		$( ".ghx-swimlane.ghx-closed" ).each(function( index, val ) {
 			// collapse all
 			$( this ).find(".js-expander").click();
+			// ps we're using the .click() here because JIRA has some internal logic connected to it, like storing the setting in memory and localStorage.
 		});
 		
 		// then collapse the Done ones
@@ -108,8 +111,6 @@ function appendLink() {
 				$( this ).find(".js-expander").click();
 			}
 		});
-		// ps we're using the .click() here because JIRA has some internal logic connected to it, like storing the setting in memory and localStorage.
-
 	});
 
 	// when clicked on "Show copyable list"-button
@@ -145,10 +146,7 @@ function appendLink() {
 				}
 			});
 		});
-
-
 	});
-
 }
 
 function htmlEntities(str) {
@@ -335,6 +333,27 @@ function escapeHtml(text) {
   return text.replace(/[&<>"']/g, function(m) { return map[m]; });
 }
 
+function hideSomeSubtasks() {
+			// Hide Done subtasks above threshold amount
+		$('.ghx-columns').find('.ghx-column:last').each(function (index) {
+			var issues = $(this).find('.ghx-issue');
+			var doneCount = issues.length;
+			if(doneCount > doneSubtasksLimit) {
+				var showButton = issues.eq(doneSubtasksLimit).clone();
+				showButton.addClass('showMoreSubtasks');
+				showButton.html('Show more (+' + (doneCount - doneSubtasksLimit) + ')');
+				$(this).append(showButton);
+				showButton.on('click', function(){
+					$(this).hide().parent().find('.hiddenSubtask').show();
+				})
+
+				issues.each(function(index){
+					if(index >= doneSubtasksLimit) $(this).addClass('hiddenSubtask').hide();
+				})
+			}
+		})
+}
+
 
 (function () {
 
@@ -348,6 +367,15 @@ function escapeHtml(text) {
 				}, 1200);
 		//	}
 		});
+
+		// Reinitiate after a click on the 3rd cell of the (Review?)table header of scrum board (workaround for SPs dissappearing after moving a subtask)
+		$(document).on('click', '.ghx-column:nth-child(3) .ghx-column-title', function (e) {
+			clearTimeout(timer);
+			timer = setTimeout(function() {
+				appendLink();
+			}, 500)
+		})
+
 
 		// change of Quick filter or Release/Epic
 		$(document).on('click', '.js-quickfilter-button, .ghx-classification-item', function (e) {
@@ -375,24 +403,7 @@ function escapeHtml(text) {
 			}
 		);
 
-		// Hide Done subtasks above threshold amount
-		$('.ghx-columns').find('.ghx-column:last').each(function (index) {
-			var issues = $(this).find('.ghx-issue');
-			var doneCount = issues.length;
-			if(doneCount > doneSubtasksLimit) {
-				var showButton = issues.eq(doneSubtasksLimit).clone();
-				showButton.addClass('showMoreSubtasks');
-				showButton.html('Show more (+' + (doneCount - doneSubtasksLimit) + ')');
-				$(this).append(showButton);
-				showButton.on('click', function(){
-					$(this).hide().parent().find('.hiddenSubtask').show();
-				})
-
-				issues.each(function(index){
-					if(index >= doneSubtasksLimit) $(this).addClass('hiddenSubtask').hide();
-				})
-			}
-		})
+		hideSomeSubtasks();
 
 		appendLink();
 	}, 2000); // wait for ajax-list to be loaded.. if link fails to show: increase amount here
