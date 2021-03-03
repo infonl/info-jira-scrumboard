@@ -47,6 +47,7 @@ Howto
 
 Install
 =====================
+This procedure assumes you dont have the plugin.If you already have the plugin with existins scripts in it. Add the script manually, see Update procedure.
 1. Download Zip from this repo (green button)
 2. Unzip zipfile and extract user-js-css-v8-xxxxxx.json file 
 3. install 'User JavaScript and CSS' extension for Chrome
@@ -67,12 +68,14 @@ Update
 =====================
 To get the lastest version:
 1. Go to your JIRA
-2. Click 'User JavaScript and CSS' icon 
+2. Click 'User JavaScript and CSS' icon in Chrome (Blue/red dotted lines-icon)
 3. Open the two panes (js/css) in the plugin
 4. (optional) create a backup of the content of both panes if you've made manual changes/configuration-settings.
 5. Open https://raw.githubusercontent.com/infonl/jira-scrumboard/master/css.css And copy-paste content in the CSS pane. This will replace the old css.
 6. Open https://raw.githubusercontent.com/infonl/jira-scrumboard/master/js.js And copy-paste content in the JS pane. This will replace the old js.
-7. Save
+7. Double check: URL: should be `jira.*/RapidBoard.jspa`
+8. Double check: Options: enable JavaScript and JQuery 3
+8. Save
 
 Go to your JIRA and refresh page and have fun!
 
