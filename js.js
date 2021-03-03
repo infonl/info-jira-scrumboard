@@ -87,11 +87,15 @@ function appendLink() {
 		});
 	}
 
-	// add Collapse Done Only button
-	$('.ghx-column:nth-last-child(1) .ghx-column-title').append(' <span class="customMiniBtn collapseDoneBtn">Collapse Done only</span>');
+
+	//  add Collapse Done Only button (if it isnt in there already)
+	if ($('.ghx-column:nth-last-child(1) .ghx-column-title:contains("Collapse Done only")').length === 0) {
+			$('.ghx-column:nth-last-child(1) .ghx-column-title').append(' <span class="customMiniBtn collapseDoneBtn">Collapse Done only</span>');
+	}
 
 	// when clicked on "Collapse Done Only" button
 	$('.collapseDoneBtn').on('click', function () {
+
 		// loop all stories and expand them all first
 		$( ".ghx-swimlane.ghx-closed" ).each(function( index, val ) {
 			// collapse all
@@ -402,7 +406,17 @@ function hideSomeSubtasks() {
 				}
 			}
 		);
-
+		
+		// reinitiate after moving an issue
+		var mouseouttimer;
+		$(document).on('mouseout', '.ghx-issue', function (e) {
+			console.log('move')
+			clearTimeout(mouseouttimer);
+			mouseouttimer = setTimeout(function() {
+				appendLink();
+			}, 2000)
+		})	
+		
 		hideSomeSubtasks();
 
 		appendLink();
