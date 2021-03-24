@@ -50,7 +50,7 @@ function AddBacklogFunctionalities() {
 	} else {
 		$('.ghx-mode-planning #ghx-quick-filters > ul').append('<li><span class="customMiniBtn showCopyableListButton">Show copyable list</span></li>');
 	}
-	
+
 	//  add Collapse Done Only button (if it isnt in there already)
 	if ($('.ghx-column:nth-last-child(1) .ghx-column-title:contains("Collapse Done only")').length === 0) {
 			$('.ghx-column:nth-last-child(1) .ghx-column-title').append(' <span class="customMiniBtn collapseDoneBtn">Collapse Done only</span>');
@@ -165,6 +165,7 @@ function AddSprintBacklogFunctionalities() {
 }
 
 function appendLink() {
+	/* @todo add toggle based on url */
 	AddBacklogFunctionalities();
 	AddSprintBacklogFunctionalities();
 }
@@ -221,7 +222,7 @@ function RenderText (description) {
 			// for Testers (for Confluence page)
 
 
-				copyTextTestScenarioTable += '<h2>'+storyId+' - '+escapedStoryTitle+'</h2>\
+			  copyTextTestScenarioTable += '<h2>'+storyId+' - '+escapedStoryTitle+'</h2>\
 	<table><tr>\
       <td class="highlight-blue" colspan="5" data-highlight-colour="blue">\
         <div class="content-wrapper">\
@@ -261,8 +262,8 @@ function RenderText (description) {
       <td colspan="1"><br/></td>\
     </tr>';
 
-	if (bAddBrowserchecksInTestScenarios) {
-  	copyTextTestScenarioTable += '<tr>\
+			if (bAddBrowserchecksInTestScenarios) {
+  				copyTextTestScenarioTable += '<tr>\
       <td colspan="1"><br/></td>\
       <td colspan="1"> \
       Check all the above scenarios in below browsers for a desktop:<br/>\
@@ -318,14 +319,14 @@ function RenderText (description) {
       <td colspan="1"><br/></td>\
       <td colspan="1"><br/></td>\
     </tr>';
-	}
+			}
 
-  	copyTextTestScenarioTable += '</table>' + 'newtablerow';
+  			copyTextTestScenarioTable += '</table>' + 'newtablerow';
 
 
 		});	// each : end
 
-			copyTextTestScenarioTable = escapeHtml(copyTextTestScenarioTable)
+		copyTextTestScenarioTable = escapeHtml(copyTextTestScenarioTable)
 
 		// make the source a bit readable
 		copyTextTestScenarioTable = copyTextTestScenarioTable.replace(/newtablerow/g, "<br/>");
