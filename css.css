@@ -46,7 +46,7 @@ Show even more condensed version of Active Sprints board with in High Contract-v
 }
 
 /* 4 column: 2-1-1-2 columns  */
-.ghx-rapid-views #gh #ghx-work #ghx-pool-column .ghx-columns, .ghx-rapid-views #gh #ghx-work #ghx-pool-column #ghx-column-headers, .ghx-rapid-views #gh #ghx-work #ghx-pool-column .ghx-zone-overlay-table {
+#ghx-rabid #ghx-work #ghx-pool-column .ghx-columns, #ghx-rabid #ghx-work #ghx-pool-column #ghx-column-headers, #ghx-rabid #ghx-work #ghx-pool-column .ghx-zone-overlay-table {
     grid-template-columns: 33% 16% 16% 33%;
     /* 5 coloumn grid-template-columns: 18% 21% 21% 20% 18%; */
 }
@@ -100,6 +100,9 @@ Show even more condensed version of Active Sprints board with in High Contract-v
     display:none;
 }
 
+
+.ghx-mode-planning .ghx-issue-fields .ghx-key,
+.ghx-contrast-high .ghx-swimlane:nth-last-child(1) .ghx-key,
 .ghx-swimlane:nth-last-child(2) .ghx-issue-fields .ghx-key,
 .ghx-mode-planning .ghx-key,
 .ghx-mode-planning .ghx-type,
