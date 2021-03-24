@@ -5,14 +5,13 @@ Creates 2-1-1-2 columns instead of 1-1-1-1 and reduces the height of a card
 
 Show even more condensed version of Active Sprints board with in High Contract-view (press Z multiple times)
 
-@author Oebe
+@author Oebe, Stefan, Leroy, Rinki, Vlad, Javad
 */
 
 
 .storyEstimation {
 	display: inline-block;
 	background-color: #deebff;
-    border-color: #deebff;
     color: #0747a6;
     font-size: 11px;
     line-height: 1.45;
@@ -22,6 +21,12 @@ Show even more condensed version of Active Sprints board with in High Contract-v
     margin: 0;
     padding: 2px 5px 3px;
     text-align: center;
+}
+
+.ghx-done .storyEstimation {
+	background-color: #e3fcef;
+    border-color: #e3fcef;
+    color: #064;
 }
 
 .customMiniBtn {
@@ -38,8 +43,14 @@ Show even more condensed version of Active Sprints board with in High Contract-v
 }
 .customMiniBtn:hover {
     border-color:  #c1c7d0;
-
 }
+
+/* 4 column: 2-1-1-2 columns  */
+.ghx-rapid-views #gh #ghx-work #ghx-pool-column .ghx-columns, .ghx-rapid-views #gh #ghx-work #ghx-pool-column #ghx-column-headers, .ghx-rapid-views #gh #ghx-work #ghx-pool-column .ghx-zone-overlay-table {
+    grid-template-columns: 33% 16% 16% 33%;
+    /* 5 coloumn grid-template-columns: 18% 21% 21% 20% 18%; */
+}
+
 
 /* less height for card */
 .ghx-issue .ghx-issue-content {
@@ -84,6 +95,7 @@ Show even more condensed version of Active Sprints board with in High Contract-v
     display:none;
 }
 
+.ghx-swimlane:nth-last-child(2) .ghx-issue-fields .ghx-key,
 .ghx-mode-planning .ghx-key,
 .ghx-mode-planning .ghx-type,
 .ghx-mode-planning .ghx-flags,
@@ -147,10 +159,6 @@ Show even more condensed version of Active Sprints board with in High Contract-v
 	padding: 2px 5px;
 }
 
-.ghx-contrast-high .ghx-column:nth-last-child(1)  .ghx-issue-content
-{
-    min-height:  22px;
-}
 .ghx-contrast-high .ghx-column:nth-last-child(1)  .ghx-issue-fields .ghx-summary .ghx-inner {
     line-height: 1.0em;
 }
