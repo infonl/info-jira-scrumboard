@@ -36,6 +36,8 @@ var colHeader5 = 'Remarks';
 // You can get this ID by looking into the source of a confluence page while you added a JIRA marcro in that page, or ask your admin: https://confluence.atlassian.com/adminjiraserver/finding-your-server-id-938847652.html
 var jiraServerId = '';
 
+var jiraLicense = 'server'; // server or cloud
+
 // =========== configuration : end ===============
 
 var timer;
@@ -43,8 +45,12 @@ var timer;
 
 
 function AddBacklogFunctionalities() {
-	$('.ghx-mode-planning .js-quickfilter-selector').append('| <span class="customMiniBtn showCopyableListButton">Show copyable list</span>');
-
+	if (jiraLicense == 'server') {
+		$('.ghx-mode-planning .js-quickfilter-selector').append('| <span class="customMiniBtn showCopyableListButton">Show copyable list</span>');
+	} else {
+		$('.ghx-mode-planning #ghx-quick-filters > ul').append('<li><span class="customMiniBtn showCopyableListButton">Show copyable list</span></li>');
+	}
+	
 	//  add Collapse Done Only button (if it isnt in there already)
 	if ($('.ghx-column:nth-last-child(1) .ghx-column-title:contains("Collapse Done only")').length === 0) {
 			$('.ghx-column:nth-last-child(1) .ghx-column-title').append(' <span class="customMiniBtn collapseDoneBtn">Collapse Done only</span>');
@@ -90,7 +96,7 @@ function AddBacklogFunctionalities() {
 		$( ".js-issue-list .ghx-selected" ).each(function( index) {
 
 			var listlength = $( ".js-issue-list .ghx-selected" ).length;
-			var storyId = $( this ).find('.ghx-key a').text();
+			var storyId = $( this ).attr('data-issue-key');
 			var urlParams = new URLSearchParams(window.location.search);
 			var rapidViewId = urlParams.get('rapidView');
 			
@@ -120,7 +126,7 @@ function AddSprintBacklogFunctionalities() {
 		} else {
 			// wide - small - small - wide (more space in columns that often have a lot of stories)
 			var gridtemplatecolumns = "33% 16% 16% 33%";
-			$( ".ghx-rapid-views #gh #ghx-work #ghx-pool-column .ghx-columns, .ghx-rapid-views #gh #ghx-work #ghx-pool-column #ghx-column-headers, .ghx-rapid-views #gh #ghx-work #ghx-pool-column .ghx-zone-overlay-table" ).css("grid-template-columns", gridtemplatecolumns);
+			$( "#ghx-rabid  #ghx-work #ghx-pool-column .ghx-columns, #ghx-rabid #ghx-work #ghx-pool-column #ghx-column-headers, #ghx-rabid #ghx-work #ghx-pool-column .ghx-zone-overlay-table" ).css("grid-template-columns", gridtemplatecolumns);
 		}
 	}
 
@@ -180,11 +186,10 @@ function RenderText (description) {
 			var storyTitle = $( this ).find('.ghx-summary').text();
 			var escapedStoryTitle = storyTitle.replace(/&/g, "&amp;amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 			//console.log(escapedStoryTitle);
-			var storyId = $( this ).find('.ghx-key a').text();
-			var storyLink = window.location.origin + $( this ).find('.ghx-key a').attr('href');
+			var storyId = $( this ).attr('data-issue-key');
+			var storyLink = window.location.origin + "/browse/" + storyId;
 			var storyType = $( this ).find('.ghx-type').attr('title');
-			var storyPoints = $( this ).find('.ghx-estimate').text();
-
+			var storyPoints = $( this ).find('.ghx-statistic-badge').text();
 
 			// for POs copy-paste into Slack
 			  copyTextAndLink += storyTitle;
