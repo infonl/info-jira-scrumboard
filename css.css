@@ -10,8 +10,8 @@ Show even more condensed version of Active Sprints board with in High Contract-v
 
 
 .storyEstimation {
-	display: inline-block;
-	background-color: #deebff;
+    display: inline-block;
+    background-color: #deebff;
     color: #0747a6;
     font-size: 11px;
     line-height: 1.45;
@@ -51,8 +51,13 @@ Show even more condensed version of Active Sprints board with in High Contract-v
     /* 5 coloumn grid-template-columns: 18% 21% 21% 20% 18%; */
 }
 
+.adg3 #ghx-pool {
+    margin-left: 0;
+    margin-right: 0;
+}
 
 /* less height for card */
+.ghx-issue .ghx-summary,
 .ghx-issue .ghx-issue-content {
     min-height:  44px;
 }
@@ -127,6 +132,10 @@ Show even more condensed version of Active Sprints board with in High Contract-v
 
 
 /* === high contraxt view === */
+
+.ghx-contrast-high .ghx-stat-fields {
+	display:none;
+}
 
 /* Block sidebar from opening when in high contraxt view */
 .ghx-contrast-high #ghx-detail-view,
