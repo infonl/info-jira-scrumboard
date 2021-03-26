@@ -136,7 +136,9 @@ Show even more condensed version of Active Sprints board with in High Contract-v
 
 /* === high contraxt view === */
 
-.ghx-contrast-high .ghx-stat-fields {
+.ghx-contrast-high .ghx-stat-fields .ghx-key,
+.ghx-contrast-high .ghx-stat-fields .ghx-field-icon,
+.ghx-contrast-high .ghx-stat-fields .ghx-estimate {
 	display:none;
 }
 
