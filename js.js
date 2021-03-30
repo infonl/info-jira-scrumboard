@@ -186,11 +186,17 @@ function RenderText (description) {
 
 			var storyTitle = $( this ).find('.ghx-summary').text();
 			var escapedStoryTitle = storyTitle.replace(/&/g, "&amp;amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-			//console.log(escapedStoryTitle);
 			var storyId = $( this ).attr('data-issue-key');
-			var storyLink = window.location.origin + "/browse/" + storyId;
 			var storyType = $( this ).find('.ghx-type').attr('title');
 			var storyPoints = $( this ).find('.ghx-statistic-badge').text();
+			
+			// get url to issue
+			const parsedUrl = new URL(window.location.href);
+			var pUrl = parsedUrl.origin + parsedUrl.pathname; 
+			var urlSplit = pUrl.split('/');
+			urlSplit.pop();
+			var urlWithoutLastPart = urlSplit.join("/");
+			var storyLink = urlWithoutLastPart.replace(/secure/g, "browse/") + storyId;
 
 			// for POs copy-paste into Slack
 			  copyTextAndLink += storyTitle;
