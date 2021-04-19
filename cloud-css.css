@@ -1,0 +1,232 @@
+/*
+
+For JIRA Cloud only - replace existing css.
+
+Adapt the Active Sprints-board so more issues fit on
+
+Creates 2-1-1-2 columns instead of 1-1-1-1 and reduces the height of a card
+
+Show even more condensed version of Active Sprints board with in High Contract-view (press Z multiple times)
+
+@author Oebe, Stefan, Leroy, Rinki, Vlad, Javad
+*/
+
+
+.storyEstimation {
+	display: inline-block;
+	background-color: #deebff;
+    color: #0747a6;
+    font-size: 11px;
+    line-height: 1.45;
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin: 0;
+    padding: 2px 5px 3px;
+    text-align: center;
+}
+
+.ghx-done .storyEstimation {
+	background-color: #e3fcef;
+    border-color: #e3fcef;
+    color: #064;
+}
+
+.customMiniBtn {
+    border: 1px solid transparent;
+    -webkit-border-radius: 3px 3px 3px 3px;
+    border-radius: 3px 3px 3px 3px;
+    display: inline-block;
+    line-height: 1;
+    margin: 0 5px 0 0;
+    padding: 7px 10px;
+    font-weight: 400;
+    color: #0052cc;
+    cursor: pointer;
+}
+.customMiniBtn:hover {
+    border-color:  #c1c7d0;
+}
+
+/* 4 column: 2-1-1-2 columns  */
+#ghx-rabid #ghx-work #ghx-pool-column .ghx-columns, #ghx-rabid #ghx-work #ghx-pool-column #ghx-column-headers, #ghx-rabid #ghx-work #ghx-pool-column .ghx-zone-overlay-table {
+    display: grid;
+    grid-template-columns: 33% 16% 16% 33%;
+    /*grid-template-columns: 18% 21% 21% 20% 18%; */
+}
+
+.adg3 #ghx-pool {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+/* less height for card */
+.ghx-issue .ghx-summary {
+    min-height:  44px;
+}
+.ghx-issue-fields .ghx-summary .ghx-inner {
+    line-height: 1.6em;
+}
+
+.ghx-column:nth-child(1) .ghx-issue-subtask,
+.ghx-column:nth-last-child(1) .ghx-issue-subtask {
+	width: 39%;
+	float: left;
+}
+
+/* compact view (Z-key)  */
+.ghx-header-compact .ghx-column:nth-child(1) .ghx-issue-subtask,
+.ghx-header-compact .ghx-column:nth-last-child(1) .ghx-issue-subtask {
+	width: 42%;
+}
+
+.ghx-issue {
+    padding: 7px;
+}
+
+
+.ghx-issue-subtask {
+	margin: 3px;
+}
+
+.ghx-issue-fields .ghx-key,
+.xghx-type,
+.xghx-flags,
+.xghx-end
+{
+    display:none;
+}
+
+.ghx-column:nth-child(1) .ghx-days,
+.ghx-column:nth-last-child(1) .ghx-days
+{
+    display:none;
+}
+
+/* mode-planning = backlog view */
+.ghx-contrast-high .ghx-swimlane:nth-last-child(1) .ghx-key,
+.ghx-mode-planning .ghx-issue-fields .ghx-key,
+.xghx-mode-planning .ghx-type,
+.xghx-mode-planning .ghx-flags,
+.xghx-mode-planning .ghx-end
+{
+    display:block;
+}
+
+.ghx-issue .ghx-avatar {
+    right: 5px;
+    top: 5px;
+}
+
+.ghx-issue.ghx-has-avatar .ghx-issue-fields, .ghx-issue.ghx-has-corner .ghx-issue-fields {
+    padding-right: 0;
+}
+
+.ghx-issue-fields .ghx-summary {
+ padding-right: 40px;
+}
+
+.ghx-issue .ghx-card-footer {
+    margin: 0;
+}
+
+/* hide issuestype icon / priority icon of subtasks */
+.ghx-stat-fields .ghx-field-icon
+{
+	display:none;
+}
+
+
+/* === high contrast view === */
+
+/* hide toolmenu (JIRA cloud) */
+.ghx-contrast-high #ghx-modes-tools {
+	display:none;
+}
+
+/* hide sidemenu (JIRA server does this by default in high contract view */
+.ghx-contrast-high div[data-testid="ContextualNavigation"]{
+	display:none;
+}
+
+/* hide key / issuestype icon / priority icon and estimate of subtasks */
+.ghx-contrast-high .ghx-stat-fields .ghx-key,
+.ghx-contrast-high .ghx-stat-fields .ghx-field-icon,
+.ghx-contrast-high .ghx-stat-fields .ghx-estimate{
+	display:none;
+}
+
+/* Block sidebar (JIRA server only) from opening when in high contraxt view */
+.ghx-contrast-high #ghx-detail-view,
+.ghx-contrast-high #ghx-operations {
+	display:none;
+}
+
+.ghx-contrast-high .ghx-swimlane-header .ghx-heading {
+	margin: 2px 0;
+}
+.ghx-contrast-high #gh #ghx-work #ghx-pool-column .ghx-swimlane .ghx-swimlane-header {
+    top: 0;
+}
+/*cloud*/
+.ghx-iconfont.aui-icon-small::before {
+    margin-top: -14px;
+}
+
+.ghx-contrast-high .ghx-issue .ghx-issue-content {
+    min-height:  34px;
+}
+
+.ghx-contrast-high .ghx-column-title {
+	font-size: 15px;
+}
+.ghx-contrast-high .ghx-column-headers .ghx-colum {
+	padding: 0;
+}
+.ghx-contrast-high #gh #ghx-work #ghx-pool-column #ghx-column-headers .ghx-column {
+    padding: 0;
+}
+
+.ghx-contrast-high .ghx-issue-subtask{
+	padding: 2px 5px;
+}
+
+.ghx-contrast-high .ghx-column:nth-last-child(1)  .ghx-issue-fields .ghx-summary .ghx-inner {
+    line-height: 1.0em;
+}
+
+.ghx-issue .ghx-avatar {
+    right: 1px;
+    top: 1px;
+}
+
+.ghx-contrast-high .ghx-column:nth-last-child(1)  .ghx-issue .ghx-avatar {
+    /*xdisplay:none;*/
+}
+
+.ghx-contrast-high .ghx-flagged {
+	background-color: #ffe9a8;
+}
+
+.ghx-contrast-high .ghx-column:nth-child(1) .ghx-issue-subtask,
+.ghx-contrast-high .ghx-column:nth-last-child(1) .ghx-issue-subtask{
+	width: 28%;
+	font-size: 11px;
+}
+
+.ghx-contrast-high .ghx-issue-fields .ghx-summary .ghx-inner {
+    max-height: 3em;
+}
+
+.showMoreSubtasks {
+    cursor: pointer;
+}
+
+/* 2-1-1-2 columns  ghx-zone-overlay-table -> you see when dragging a task */
+.ghx-zone-overlay-table div {
+   width: 32%;
+}
+
+.ghx-zone-overlay-table div:nth-child(1), .ghx-zone-overlay-table div:nth-last-child(1){
+   width: 64%;
+}
